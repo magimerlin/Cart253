@@ -10,19 +10,21 @@ int circleY; //Where the circle will be placed on the Y axis.
 int circleVX;//The velosity on the X axis
 int circleVY;//The velocity on the Y axis (where the circle is moving)
 
-void setup() { //
-  size(640, 480);
-  circleX = width/2;
-  circleY = height/2;
-  circleVX = CIRCLE_SPEED;
-  circleVY = CIRCLE_SPEED;
-  stroke(STROKE_COLOR);
-  fill(NO_CLICK_FILL_COLOR);
-  background(BACKGROUND_COLOR);
+void setup() { // All information previously written actually applied
+  size(640, 480); //size of the window containing the code 
+  circleX = width/2;// makes the circle start in the center of the screen 
+  circleY = height/2;//makes the circle start in the center of the screen. 
+  //if either the height or width were to be diregarded from this code then the circle would 
+  //continuously move alone either, the x or y axis continuously. 
+  circleVX = CIRCLE_SPEED;//
+  circleVY = CIRCLE_SPEED;//
+  stroke(STROKE_COLOR);//
+  fill(NO_CLICK_FILL_COLOR); //blue fill when cursure hoveres over moving circle.
+  background(BACKGROUND_COLOR); //colour of the background 
 }
 
 void draw() {
-  background (0);
+  //background (0);
     if (dist(mouseX, mouseY, circleX, circleY) < CIRCLE_SIZE/2) {
     fill(CLICK_FILL_COLOR);
   }
