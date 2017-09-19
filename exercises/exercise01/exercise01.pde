@@ -5,12 +5,12 @@ final color BACKGROUND_COLOR = color(250, 150, 150); //This is just the backgrou
 final color STROKE_COLOR = color(250, 150, 150); //colour of the circles boarder 
 final int CIRCLE_SIZE = 50; //The circles... size. Circumpherance and hieght. 
 
-int circleX;
-int circleY; //
+int circleX; // where the circle will be placed on the X axis.  
+int circleY; //Where the circle will be placed on the Y axis.
 int circleVX;//The velosity on the X axis
 int circleVY;//The velocity on the Y axis (where the circle is moving)
 
-void setup() {
+void setup() { //
   size(640, 480);
   circleX = width/2;
   circleY = height/2;
@@ -22,6 +22,7 @@ void setup() {
 }
 
 void draw() {
+  background (0);
     if (dist(mouseX, mouseY, circleX, circleY) < CIRCLE_SIZE/2) {
     fill(CLICK_FILL_COLOR);
   }
