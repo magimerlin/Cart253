@@ -29,7 +29,7 @@ void draw() {
     fill(CLICK_FILL_COLOR); // this code calculates the position of the curser.
   }
   else {
-    fill(NO_CLICK_FILL_COLOR);
+    fill(NO_CLICK_FILL_COLOR);//
   }
   ellipse(circleX, circleY, CIRCLE_SIZE, CIRCLE_SIZE);
   circleX += circleVX;
