@@ -26,22 +26,24 @@ void setup() { // All information previously written actually applied
 void draw() {
   //background (0);
     if (dist(mouseX, mouseY, circleX, circleY) < CIRCLE_SIZE/2) {
-    fill(CLICK_FILL_COLOR); // this code calculates the position of the curser.
+    fill(CLICK_FILL_COLOR); 
   }
   else {
-    fill(NO_CLICK_FILL_COLOR);
+    fill(NO_CLICK_FILL_COLOR);// this code calculates the position of the curser and allows for the fill colour to change into blue when the curser hovers over the circle.
   }
-  ellipse(circleX, circleY, CIRCLE_SIZE, CIRCLE_SIZE);
-  circleX += circleVX;
-  circleY += circleVY;
+  ellipse(circleX, circleY, CIRCLE_SIZE, CIRCLE_SIZE);// regulates the soze of the circle. 
+ 
+  circleX += circleVX; //changes the position of the circle on the Y axis. It allows for the circle to "move" around the screen.
+  circleY += circleVY;// changes the position of the circle on the Y axis. It allows for the circle to "move" around the screen.
+  
   if (circleX + CIRCLE_SIZE/2 > width || circleX - CIRCLE_SIZE/2 < 0) {
-    circleVX = -circleVX;
+    circleVX = -circleVX;//This makes sure that the circle bounces off the x axis of the window rather then moving off the screen.
   }
   if (circleY + CIRCLE_SIZE/2 > height || circleY - CIRCLE_SIZE/2 < 0) {
-    circleVY = -circleVY;
+    circleVY = -circleVY;//This makes sure that the circle bounces off the y axis of the window rather then moving off the screen.
   }
 }
 
 void mousePressed() {
-  background(BACKGROUND_COLOR);
+  background(BACKGROUND_COLOR);//this code redraws the background...
 }
