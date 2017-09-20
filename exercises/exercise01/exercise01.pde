@@ -5,10 +5,15 @@ final color BACKGROUND_COLOR = color(250, 150, 150); //This is just the backgrou
 final color STROKE_COLOR = color(250, 150, 150); //colour of the circles border 
 final int CIRCLE_SIZE = 50; //The circles... size. Circumpherance and hieght. 
 
+int circleColor = 0;
+
 int circleX; // where the circle will be placed on the X axis.  
 int circleY; //Where the circle will be placed on the Y axis.
 int circleVX;//The velosity on the X axis
 int circleVY;//The velocity on the Y axis (where the circle is moving)
+
+int circle2x = 640;
+int circle2y = 480;
 
 void setup() { // All information previously written actually applied
   size(640, 480); //size of the window containing the code 
@@ -19,7 +24,7 @@ void setup() { // All information previously written actually applied
   circleVX = CIRCLE_SPEED;// the speed in witch the circle moves along the x axis 
   circleVY = CIRCLE_SPEED;// the speed in which the circle moves along the y axis
   stroke(STROKE_COLOR);// the circles border colour 
-  fill(NO_CLICK_FILL_COLOR); //blue fill when cursure hoveres over moving circle.
+  fill(circleColor); //blue fill when cursure hoveres over moving circle.
   background(BACKGROUND_COLOR); //colour of the background 
 }
 
@@ -29,7 +34,8 @@ void draw() {
     fill(CLICK_FILL_COLOR); 
   }
   else {
-    fill(NO_CLICK_FILL_COLOR);// this code calculates the position of the curser and allows for the fill colour to change into blue when the curser hovers over the circle.
+    fill(circleColor);// this code calculates the position of the curser and allows for the fill colour to change into blue when the curser hovers over the circle.
+     circleColor = circleColor+1;
   }
   ellipse(circleX, circleY, CIRCLE_SIZE, CIRCLE_SIZE);// regulates the soze of the circle. 
  
