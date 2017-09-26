@@ -9,7 +9,7 @@ int paddleX;
 int paddleY;
 int paddleVX;
 int paddleSpeed = 10;
-int paddleWidth = 128;
+int paddleWidth = 200; // CHANGED: I want to make the paddle reduce in size everytime the ball hits it but stops getting small around size 60.
 int paddleHeight = 16;
 color paddleColor = color(255);
 
@@ -50,6 +50,7 @@ void draw() {
   updatePaddle();
   updateBall();
 
+  
   drawPaddle();
   drawBall();
 }
@@ -86,18 +87,25 @@ void drawPaddle() {
   rect(paddleX, paddleY, paddleWidth, paddleHeight);
 }
 
-void drawBall() { //
+void drawBall() { 
   rectMode(CENTER);
   noStroke();
   fill(ballColor);
   rect(ballX, ballY, ballSize, ballSize);
 }
+  
+
 
 void handleBallHitPaddle() {
   if (ballOverlapsPaddle()) {
-    ballY = paddleY - paddleHeight/2 - ballSize/2;
+    ballY = paddleY - paddleHeight/2 - ballSize/2; //makes sure ball hits the edge of paddle instead of going inside it. 
     ballVY = -ballVY;
-    accelerateBall(); // VARIABLE added, acceleration of the ball.
+    accelerateBall();  // VARIABLE added, acceleration of the ball.
+      
+   if (paddleWidth > 60){
+        paddleWidth = paddleWidth - 10; // CHANGED: the paddle starts at 200 and reduces by 10px everytime the ball hits the paddle. it will stop reducing in size when 
+        //hits the width of 60px. 
+   }
   }
 }
 
@@ -117,7 +125,9 @@ void accelerateBall(){
 boolean ballOverlapsPaddle() {
   if (ballX - ballSize/2 > paddleX - paddleWidth/2 && ballX + ballSize/2 < paddleX + paddleWidth/2) {
     if (ballY > paddleY - paddleHeight/2) {
+      println("hello");
       return true;
+      
     }
   }
   return false;
