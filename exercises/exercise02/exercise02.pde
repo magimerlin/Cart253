@@ -3,7 +3,7 @@ color backgroundColor = color(0);
 int numStatic = 1000;
 int staticSizeMin = 1;
 int staticSizeMax = 3;
-color staticColor = color(150);
+color staticColor = color(180, 0, 150); 
 
 int paddleX;
 int paddleY;
@@ -13,23 +13,24 @@ int paddleWidth = 128;
 int paddleHeight = 16;
 color paddleColor = color(255);
 
-int ballX;
+int ballX; //position of the ball on the screen relative to the x axis 
 int ballY;
-int ballVX;
+int ballVX; //speed of the ball relative to the x axis
 int ballVY;
-int ballSpeed = 5;
+int ballSpeed = 1; //CHANGED: ball speed will start at 1px/sec.
 int ballSize = 16;
+int acceleration = 1; //This allows the balls speed to accelerate by 1px/sec 
 color ballColor = color(255);
 
 void setup() {
   size(640, 480);
-  
+
   setupPaddle();
   setupBall();
 }
 
 void setupPaddle() {
-  paddleX = width/2;
+  paddleX = width;
   paddleY = height - paddleHeight;
   paddleVX = 0;
 }
@@ -55,26 +56,27 @@ void draw() {
 
 void drawStatic() {
   for (int i = 0; i < numStatic; i++) {
-   float x = random(0,width);
-   float y = random(0,height);
-   float staticSize = random(staticSizeMin,staticSizeMax);
-   fill(staticColor);
-   ellipse(x,y,staticSize,staticSize);
+    float x = random(0, width);
+    float y = random(0, height);
+    float staticSize = random(staticSizeMin, staticSizeMax);
+    fill(staticColor);
+    ellipse(x, y, staticSize, staticSize);
   }
 }
 
 void updatePaddle() {
   paddleX += paddleVX;  
-  paddleX = constrain(paddleX,0+paddleWidth/2,width-paddleWidth/2);
+  paddleX = constrain(paddleX, 0+paddleWidth/2, width-paddleWidth/2); // this makes the paddle stay in the confines of the programs window. 
 }
 
 void updateBall() {
   ballX += ballVX;
   ballY += ballVY;
-  
+
   handleBallHitPaddle();
   handleBallHitWall();
   handleBallOffBottom();
+
 }
 
 void drawPaddle() {
@@ -84,7 +86,7 @@ void drawPaddle() {
   rect(paddleX, paddleY, paddleWidth, paddleHeight);
 }
 
-void drawBall() {
+void drawBall() { //
   rectMode(CENTER);
   noStroke();
   fill(ballColor);
@@ -95,9 +97,23 @@ void handleBallHitPaddle() {
   if (ballOverlapsPaddle()) {
     ballY = paddleY - paddleHeight/2 - ballSize/2;
     ballVY = -ballVY;
+    accelerateBall(); // VARIABLE added, acceleration of the ball.
   }
 }
 
+void accelerateBall(){
+      if (ballVX < 0) { 
+      ballVX = ballVX-acceleration;
+    } else {
+      ballVX = ballVX+acceleration;
+    }
+    if (ballVY < 0) { 
+      ballVY = ballVY-acceleration;
+    } else {
+      ballVY = ballVY+acceleration; //these else and if functions allows the ball to accelerate everytime it hits the paddle.
+    }
+  }
+    
 boolean ballOverlapsPaddle() {
   if (ballX - ballSize/2 > paddleX - paddleWidth/2 && ballX + ballSize/2 < paddleX + paddleWidth/2) {
     if (ballY > paddleY - paddleHeight/2) {
@@ -126,7 +142,7 @@ void handleBallHitWall() {
     ballX = width - ballSize/2;
     ballVX = -ballVX;
   }
-  
+
   if (ballY - ballSize/2 < 0) {
     ballY = 0 + ballSize/2;
     ballVY = -ballVY;
