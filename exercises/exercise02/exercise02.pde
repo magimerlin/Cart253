@@ -18,6 +18,7 @@ int ballY;
 int ballVX; //speed of the ball relative to the x axis
 int ballVY;
 int ballSpeed = 1; //CHANGED: ball speed will start at 1px/sec.
+int maxBallSpeed = 9; // this is the maximum ball speed. 
 int ballSize = 16;
 int acceleration = 1; //This allows the balls speed to accelerate by 1px/sec 
 color ballColor = color(255);
@@ -105,9 +106,14 @@ void handleBallHitPaddle() {
    if (paddleWidth > 60){
         paddleWidth = paddleWidth - 10; // CHANGED: the paddle starts at 200 and reduces by 10px everytime the ball hits the paddle. it will stop reducing in size when 
         //hits the width of 60px. 
-   }
+        
+         //accelerateBall();{
+         //  if (ballVX > ballspeed + 9)
+           
+        }
+     }
   }
-}
+
 
 void accelerateBall(){
       if (ballVX < 0) { 
@@ -120,8 +126,35 @@ void accelerateBall(){
     } else {
       ballVY = ballVY+acceleration; //these else and if functions allows the ball to accelerate everytime it hits the paddle.
     }
-  }
     
+    if (ballVX > maxBallSpeed) { //this code stop the ball from accelerating forver and limits its speed to 9px/sec. 
+      ballVX = maxBallSpeed; 
+    }
+    else if (ballVX < -maxBallSpeed){
+      ballVX = -9;
+    }
+      
+    if (ballVY> 9) {
+        ballVY = maxBallSpeed; 
+         }
+         else if (ballVY < -maxBallSpeed) {
+           ballVY = -maxBallSpeed; 
+         }
+ 
+      }
+      
+    //if (ballVX <= 9) {
+    //  ballVX = -9; }
+    //  else {
+    //    ballVY = 9;}
+    //   if (ballVY <= 9) {
+    //  ballVY = -9; }
+    //  else {
+    //    ballVY = 9;}  
+      
+
+  
+  
 boolean ballOverlapsPaddle() {
   if (ballX - ballSize/2 > paddleX - paddleWidth/2 && ballX + ballSize/2 < paddleX + paddleWidth/2) {
     if (ballY > paddleY - paddleHeight/2) {
