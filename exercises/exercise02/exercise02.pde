@@ -127,7 +127,7 @@ void accelerateBall(){
       ballVY = ballVY+acceleration; //these else and if functions allows the ball to accelerate everytime it hits the paddle.
     }
     
-    if (ballVX > maxBallSpeed) { //this code stop the ball from accelerating forver and limits its speed to 9px/sec. 
+    if (ballVX > maxBallSpeed) { //this code stops the ball from accelerating forver and limits its speed to 9px/sec. 
       ballVX = maxBallSpeed; 
     }
     else if (ballVX < -maxBallSpeed){
