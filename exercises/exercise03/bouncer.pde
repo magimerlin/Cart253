@@ -9,7 +9,9 @@ class Bouncer {
  color defaultColor;
  color hoverColor;
  
- Bouncer(int tempX, int tempY, int tempVX, int tempVY, int tempSize, color tempDefaultColor, color tempHoverColor) {
+ // this defins where the bouncer ball will start, how fast it will go, what size it will be and what colors it will desplay. 
+ //Its default color as well as the color it will show when the curser hovers over it.
+ Bouncer(int tempX, int tempY, int tempVX, int tempVY, int tempSize, color tempDefaultColor, color tempHoverColor) { 
    x = tempX;
    y = tempY;
    vx = tempVX;
@@ -37,6 +39,7 @@ class Bouncer {
      vy = -vy;
    }
    
+   //perventds the ball from moving off the screen
    x = constrain(x,size/2,width-size/2);
    y = constrain(y,size/2,height-size/2);
  }
