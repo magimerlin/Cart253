@@ -1,6 +1,6 @@
 class Bouncer {
   
- int x;
+ int x; //where the ellipse starts in the window.
  int y;
  int vx;
  int vy;
@@ -23,39 +23,47 @@ class Bouncer {
  }
  
  void update() {
+   //y=y+v the movment of the ellipse.
    x += vx;
    y += vy;
    
    handleBounce();
    handleMouse();
  }
- 
+ //CHANGED:
+ //everytime the ball hits the side of the window it changes color.
  void handleBounce() {
+  
    if (x - size/2 < 0 || x + size/2 > width) {
     vx = -vx; 
+    fillColor = color(random(0,255),random(0,255),random(0,255));
    }
    
    if (y - size/2 < 0 || y + size/2 > height) {
      vy = -vy;
+      fillColor = color(random(0,255),random(0,255),random(0,255));
    }
    
-   //perventds the ball from moving off the screen
+    
+   
+   //pervents the ball from moving off the screen
    x = constrain(x,size/2,width-size/2);
    y = constrain(y,size/2,height-size/2);
  }
  
+ //this allows  curser to interact with the program changing the fill color of the ellipse.
  void handleMouse() {
    if (dist(mouseX,mouseY,x,y) < size/2) {
-    fillColor = hoverColor; 
-   }
-   else {
-     fillColor = defaultColor;
+    fillColor = hoverColor;
    }
  }
+
  
  void draw() {
    noStroke();
    fill(fillColor);
    ellipse(x,y,size,size);
+
  }
+ 
 }
