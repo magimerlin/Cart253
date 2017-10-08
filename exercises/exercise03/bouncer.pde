@@ -57,6 +57,15 @@ class Bouncer {
     fillColor = hoverColor;
    }
  }
+ //CHANGED 
+ //the ellipse will increase its speed by 2 everytime somone clicks the moving ellipse.
+  void mouseClicked(){
+  if (dist(mouseX,mouseY,x,y) < size/2) {
+    vx = 2*vx; 
+   }
+     if (dist(mouseX,mouseY,x,y) < size/2) {
+        vy = 2*vy; }
+ }
 
  
  void draw() {
