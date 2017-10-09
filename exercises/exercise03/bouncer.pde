@@ -44,8 +44,6 @@ class Bouncer {
       fillColor = color(random(0,255),random(0,255),random(0,255));
    }
    
-    
-   
    //pervents the ball from moving off the screen
    x = constrain(x,size/2,width-size/2);
    y = constrain(y,size/2,height-size/2);
@@ -62,10 +60,14 @@ class Bouncer {
   void mouseClicked(){
   if (dist(mouseX,mouseY,x,y) < size/2) {
     vx = 2*vx; 
+     //size = -1*size;
    }
      if (dist(mouseX,mouseY,x,y) < size/2) {
-        vy = 2*vy; }
- }
+        vy = 2*vy; } {
+          //the size will also increase with every click.
+    size = 2*size; }
+}
+    
 
  
  void draw() {
