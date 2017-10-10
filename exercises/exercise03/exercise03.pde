@@ -14,7 +14,14 @@ void draw() {
   bouncer2.update();
   bouncer.draw();
   bouncer2.draw();
+  
+  //CHANGED 
+  if (bouncer.overlap(bouncer2)) {
+    bouncer.fillColor = color(0);
+    bouncer2.fillColor = color(0);
+  }
 }
+
 void mouseClicked(){
   bouncer.mouseClicked();
   bouncer2.mouseClicked();
