@@ -13,6 +13,7 @@
 Paddle leftPaddle;
 Paddle rightPaddle;
 Ball ball;
+powerUps; 
 
 // The distance from the edge of the window a paddle should be
 int PADDLE_INSET = 8;
