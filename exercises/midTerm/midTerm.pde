@@ -4,8 +4,9 @@
 Paddle leftPaddle;
 Paddle rightPaddle;
 Ball ball;
-PowerUp one;
-                //GameScore score; 
+SpeedPowerUp speedPowerUp;
+ShrinkPowerUp shrinkPowerUp;
+//GameScore score; 
 
 // The distance from the edge of the window a paddle should be
 int PADDLE_INSET = 8;
@@ -20,19 +21,19 @@ color backgroundColor = color(0);
 
 void setup() {
   // Set the size
-      size(640, 480);
+  size(640, 480);
 
   // Create the paddles on either side of the screen. 
   // Use PADDLE_INSET to to position them on x, position them both at centre on y
   // Also pass through the two keys used to control 'up' and 'down' respectively
   // NOTE: On a mac you can run into trouble if you use keys that create that popup of
   // different accented characters in text editors (so avoid those if you're changing this)
-      leftPaddle = new Paddle(PADDLE_INSET, height/2, '1', 'q');
-      rightPaddle = new Paddle(width - PADDLE_INSET, height/2, '0', 'p');
+  leftPaddle = new Paddle(PADDLE_INSET, height/2, '1', 'q');
+  rightPaddle = new Paddle(width - PADDLE_INSET, height/2, '0', 'p');
 
   // Create the ball at the centre of the screen
-         ball = new Ball(width/2, height/2);
-         one = new PowerUp(width/2, height/2);
+  ball = new Ball(width/2, height/2);
+  speedPowerUp = new SpeedPowerUp(width/2, height/2);
 }
 
 // draw()
@@ -48,28 +49,41 @@ void draw() {
   leftPaddle.update();
   rightPaddle.update();
   ball.update();
-  one.update();
+  speedPowerUp.update();
+  shrinkPowerUp.update();
 
   // Check if the ball has collided with either paddle
-  ball.collide(leftPaddle);
-  ball.collide(rightPaddle);
+  ball.collide(leftPaddle, rightPaddle);
+  ball.collide(rightPaddle, leftPaddle);
+  speedPowerUp.collide(leftPaddle,rightPaddle);
+  speedPowerUp.collide(rightPaddle,leftPaddle);
 
   //one.collide(Paddle paddleHit, Paddle paddleOpponent);
 
+leftPaddle.checkPaddleScore(ball);
+  rightPaddle.checkPaddleScore(ball);
   // Check if the ball has gone off the screen
   if (ball.isOffScreen()) {
     // If it has, reset the ball
+   //   println("test");
     ball.reset();
   }
-  if (one.isOffScreen()) {
-    one.reset();
+  if (speedPowerUp.isOffScreen()) {
+  
+    speedPowerUp.reset();
+  }
+  if (shrinkPowerUp.isOffScreen()){
+    
+    speedPowerUp.reset();
   }
 
   // Display the paddles and the ball
-     leftPaddle.display();
-     rightPaddle.display();
-     ball.display();
-     one.display();
+  leftPaddle.display();
+  rightPaddle.display();
+  ball.display();
+  speedPowerUp.display();
+  shrinkPowerUp.display();
+  
 }
 
 // keyPressed()
@@ -78,18 +92,18 @@ void draw() {
 // so when the keypress is detected in the main program we need to
 // tell the paddles
 
-  void keyPressed() {
+void keyPressed() {
   // Just call both paddles' own keyPressed methods
-    leftPaddle.keyPressed();
-    rightPaddle.keyPressed();
+  leftPaddle.keyPressed();
+  rightPaddle.keyPressed();
 }
 
 // keyReleased()
 //
 // As for keyPressed, except for released!
 
-    void keyReleased() {
+void keyReleased() {
   // Call both paddles' keyReleased methods
-      leftPaddle.keyReleased();
-      rightPaddle.keyReleased();
+  leftPaddle.keyReleased();
+  rightPaddle.keyReleased();
 }

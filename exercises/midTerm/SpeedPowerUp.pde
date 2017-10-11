@@ -1,7 +1,7 @@
-class PowerUp {
+class SpeedPowerUp {
      
     // Default values for speed and size
-  int SPEED = 3;
+  int SPEED = 1;
   int SIZE = 16;
 
   // The location of the ball
@@ -13,7 +13,7 @@ class PowerUp {
   int vy;
   color powerUpcolor = color(255,0,0);
   
-  PowerUp(int _x, int _y) {
+  SpeedPowerUp(int _x, int _y) {
     x = _x;
     y = _y;
     vx = SPEED;
@@ -24,13 +24,7 @@ class PowerUp {
     // First update the location based on the velocity (so the ball moves)
     x += vx;
     y += vy;
-    
-    // CHANGED: four new classes that allow for both players paddles to be manipulated 
-    //fastPaddle();
-    //ballMultiply();
-    //slowPaddle();
-    //smallPaddle();
-    //sabotagePaddle();
+   
 
     // Check if the ball is going off the top of bottom
     if (y - SIZE/2 < 0 || y + SIZE/2 > height) {
@@ -41,27 +35,34 @@ class PowerUp {
     return (x + SIZE/2 < 0 || x - SIZE/2 > width);
   }
      void reset() {
-    x = (int)random(500);
-    y = (int)random(350);
-    vx = (int) 
+    x = width/2 - 100 + (int)random(200);
+    y = height/2 - 100 + (int)random(200);
+    
+    //
+    if (vx < 0) {
+      vx = SPEED; 
+    }
+    else {
+      vx = -SPEED;
+   } 
+    
+ 
      }
     
      //CHANGED: this is what the class is going to be able to execute, each either effecting itself, the opposite paddle or the ball itself. 
-     void fastPaddle(Paddle paddleHit) {
-      paddleHit.SPEED = 13;
-     }
-     void slowPaddle(Paddle paddleOpponent){
-       paddleOpponent.SPEED = 4;
-     }
-     void smallPaddle (Paddle paddleOpponent) {
-       paddleOpponent.HEIGHT = 40;
-     }
-     void sabotagePaddle (Paddle paddleHit){
-       paddleHit.SPEED = 4;
-     }
-    void ballMultiply (){
-       //Ball = 10*Ball;
-       }
+     //void fastPaddle(Paddle paddleHit) {
+     // paddleHit.SPEED = 13;
+     //}
+     //void slowPaddle(Paddle paddleOpponent){
+     //  paddleOpponent.SPEED = 4;
+     //}
+     //void smallPaddle (Paddle paddleOpponent) {
+     //  paddleOpponent.HEIGHT = 40;
+     //}
+     //void sabotagePaddle (Paddle paddleHit){
+     //  paddleHit.SPEED = 4;
+     //}
+  
     
      //this if statment allows for the new classes and their uses to be put into action. if the item hits the paddle then the function assigned will be applied. 
   void collide(Paddle paddleHit , Paddle paddleOpponent) {
@@ -72,11 +73,16 @@ class PowerUp {
     boolean insideBottom = (y - SIZE/2 < paddleHit.y + paddleHit.HEIGHT/2);
    
        if (insideLeft && insideRight && insideTop && insideBottom) {
-         paddleOpponent.HEIGHT = 40;
-         fastPaddle(paddleHit);
-         slowPaddle(paddleOpponent);
-         smallPaddle(paddleOpponent);
-         //ballMultiply(paddleHit);
+         paddleHit.SPEED= paddleHit.SPEED*2;
+       reset();  
+         
+         
+         
+         //paddleOpponent.HEIGHT = 40;
+         //fastPaddle(paddleHit);
+         //slowPaddle(paddleOpponent);
+         //smallPaddle(paddleOpponent);
+        
          
     } 
   }

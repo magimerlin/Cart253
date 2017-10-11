@@ -21,6 +21,7 @@ class Ball {
 
   // The colour of the ball
   color ballColor = color(255);
+ 
 
 
   /////////////// Constructor ///////////////
@@ -90,15 +91,20 @@ class Ball {
   // If it is, it makes the ball bounce away from the paddle by reversing its
   // x velocity
 
-  void collide(Paddle paddle) {
+  void collide(Paddle paddle, Paddle otherPaddle) {
     // Calculate possible overlaps with the paddle side by side
     boolean insideLeft = (x + SIZE/2 > paddle.x - paddle.WIDTH/2);
     boolean insideRight = (x - SIZE/2 < paddle.x + paddle.WIDTH/2);
     boolean insideTop = (y + SIZE/2 > paddle.y - paddle.HEIGHT/2);
     boolean insideBottom = (y - SIZE/2 < paddle.y + paddle.HEIGHT/2);
-    
+     
     // Check if the ball overlaps with the paddle
     if (insideLeft && insideRight && insideTop && insideBottom) {
+       // println("here collide");
+      //records that the ball hits the pasddle.
+       paddle.ballHitsPaddle = true; 
+       otherPaddle.ballHitsPaddle = false; 
+      
       // If it was moving to the left
       if (vx < 0) {
         // Reset its position to align with the right side of the paddle

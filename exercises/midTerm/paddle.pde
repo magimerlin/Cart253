@@ -17,6 +17,8 @@ class Paddle {
   int y;
   int vx;
   int vy;
+  int score; 
+  boolean ballHitsPaddle = false;
   
   // The fill color of the paddle
   color paddleColor = color(255);
@@ -104,4 +106,17 @@ class Paddle {
       vy = 0;
     }
   }
+  
+  //
+  void checkPaddleScore(Ball ball){
+  // println(ballHitsPaddle);
+    if (ball.isOffScreen() && ballHitsPaddle == true){
+    score+= 1; 
+    ballHitsPaddle= false;
+    println(score);
+  } 
+  
+  }
+  
+
 }
