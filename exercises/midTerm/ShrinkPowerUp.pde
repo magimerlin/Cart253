@@ -97,4 +97,7 @@ class ShrinkPowerUp {
     // Draw the ball
     rect(x, y, SIZE, SIZE);
   }
+  void draw(){
+    
+  }
 }
