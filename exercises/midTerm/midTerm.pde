@@ -34,10 +34,10 @@ void setup() {
   // Also pass through the two keys used to control 'up' and 'down' respectively
   // NOTE: On a mac you can run into trouble if you use keys that create that popup of
   // different accented characters in text editors (so avoid those if you're changing this)
-  
-  //CHANGED: paddle controls changed to R,T and U, I. this will make the players of the game a bit confused because instead of moving the paddlesm up and now ur moving left to right. 
+
+  //CHANGED: paddle controls changed to D,F and J,K. this will make the players of the game a bit confused because instead of moving the paddlesm up and now ur moving left to right. 
   leftPaddle = new Paddle(PADDLE_INSET, height/2, 'd', 'f');
-  rightPaddle = new Paddle(width - PADDLE_INSET, height/2, 'k', 'l');
+  rightPaddle = new Paddle(width - PADDLE_INSET, height/2, 'j', 'k');
 
   // Create the ball at the centre of the screen
   ball = new Ball(width/2, height/2);
@@ -63,15 +63,16 @@ void draw() {
     if (leftPaddle.score >= 175 )
     {
       winner = "Left Wins";
+      text (winner, width/4, 340);
     } else
     {
       winner = "Right Wins";
-      text (winner, width/4,340);
+      text (winner, width/4, 340);
     }
     fill (255);
     text("GAME OVER ", width/5, height/2);
     textSize(64);
-   }
+  }
 }
 
 void playGame () {    // Update the paddles and ball by calling their update methods
