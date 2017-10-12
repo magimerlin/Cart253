@@ -36,8 +36,8 @@ void setup() {
   // different accented characters in text editors (so avoid those if you're changing this)
   
   //CHANGED: paddle controls changed to R,T and U, I. this will make the players of the game a bit confused because instead of moving the paddlesm up and now ur moving left to right. 
-  leftPaddle = new Paddle(PADDLE_INSET, height/2, 'r', 't');
-  rightPaddle = new Paddle(width - PADDLE_INSET, height/2, 'u', 'i');
+  leftPaddle = new Paddle(PADDLE_INSET, height/2, 'd', 'f');
+  rightPaddle = new Paddle(width - PADDLE_INSET, height/2, 'k', 'l');
 
   // Create the ball at the centre of the screen
   ball = new Ball(width/2, height/2);
