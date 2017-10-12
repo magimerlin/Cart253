@@ -1,7 +1,7 @@
 class ShrinkPowerUp {
      
     // Default values for speed and size
-  int SPEED = 1;
+  int SPEED = 2;
   int SIZE = 16;
 
   // The location of the ball
@@ -73,10 +73,11 @@ class ShrinkPowerUp {
     boolean insideBottom = (y - SIZE/2 < paddleHit.y + paddleHit.HEIGHT/2);
    
        if (insideLeft && insideRight && insideTop && insideBottom) {
-         paddleOpponent.HEIGHT= paddleOpponent.HEIGHT-2;
+         paddleOpponent.HEIGHT= constrain(paddleOpponent.HEIGHT-10,40,1000);
+         
        reset();  
          
-         
+        
          
          //paddleOpponent.HEIGHT = 40;
          //fastPaddle(paddleHit);

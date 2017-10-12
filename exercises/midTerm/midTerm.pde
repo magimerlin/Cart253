@@ -6,10 +6,16 @@ Paddle rightPaddle;
 Ball ball;
 SpeedPowerUp speedPowerUp;
 ShrinkPowerUp shrinkPowerUp;
-//GameScore score; 
+
+//GameScore score 
+
+
 
 // The distance from the edge of the window a paddle should be
 int PADDLE_INSET = 8;
+
+//ADDED: true or false statment allowing for the game to have a definitive end
+boolean gameOver = false; 
 
 // The background colour during play (black)
 color backgroundColor = color(0);
@@ -34,6 +40,7 @@ void setup() {
   // Create the ball at the centre of the screen
   ball = new Ball(width/2, height/2);
   speedPowerUp = new SpeedPowerUp(width/2, height/2);
+  shrinkPowerUp = new ShrinkPowerUp (width/2, height/2);
 }
 
 // draw()
@@ -43,9 +50,30 @@ void setup() {
 
 void draw() {
   // Fill the background each frame so we have animation
-  background(backgroundColor);
+  background(leftPaddle.score, rightPaddle.score, 0);
 
-  // Update the paddles and ball by calling their update methods
+  //CHANGED: winner is determined and announced on screen as well as the indication of a game over.
+  if (gameOver==false) {
+    playGame();
+  } else 
+  {
+    String winner = "";
+    if (leftPaddle.score >= 175 )
+    {
+      winner = "Left Wins";
+    } else
+    {
+      winner = "Right Wins";
+      text (winner, width/4,340);
+    }
+    fill (255);
+    text("GAME OVER ", width/5, height/2);
+    textSize(64);
+   }
+}
+
+void playGame () {    // Update the paddles and ball by calling their update methods
+
   leftPaddle.update();
   rightPaddle.update();
   ball.update();
@@ -55,36 +83,40 @@ void draw() {
   // Check if the ball has collided with either paddle
   ball.collide(leftPaddle, rightPaddle);
   ball.collide(rightPaddle, leftPaddle);
-  speedPowerUp.collide(leftPaddle,rightPaddle);
-  speedPowerUp.collide(rightPaddle,leftPaddle);
+  speedPowerUp.collide(leftPaddle, rightPaddle);
+  speedPowerUp.collide(rightPaddle, leftPaddle);
+  shrinkPowerUp.collide(leftPaddle, rightPaddle);
+  shrinkPowerUp.collide(rightPaddle, leftPaddle);
+
+
 
   //one.collide(Paddle paddleHit, Paddle paddleOpponent);
 
-leftPaddle.checkPaddleScore(ball);
+  leftPaddle.checkPaddleScore(ball);
   rightPaddle.checkPaddleScore(ball);
   // Check if the ball has gone off the screen
   if (ball.isOffScreen()) {
     // If it has, reset the ball
-   //   println("test");
+    //   println("test");
     ball.reset();
   }
   if (speedPowerUp.isOffScreen()) {
-  
+
     speedPowerUp.reset();
   }
-  if (shrinkPowerUp.isOffScreen()){
-    
-    speedPowerUp.reset();
+  if (shrinkPowerUp.isOffScreen()) {
+
+    shrinkPowerUp.reset();
   }
 
-  // Display the paddles and the ball
+  // Display the paddles and the ball ADDED: power ups
   leftPaddle.display();
   rightPaddle.display();
   ball.display();
   speedPowerUp.display();
   shrinkPowerUp.display();
-  
 }
+
 
 // keyPressed()
 //

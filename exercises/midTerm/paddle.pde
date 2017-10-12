@@ -111,8 +111,12 @@ class Paddle {
   void checkPaddleScore(Ball ball){
   // println(ballHitsPaddle);
     if (ball.isOffScreen() && ballHitsPaddle == true){
-    score+= 1; 
+    score+= 35; 
     ballHitsPaddle= false;
+    
+    if (score >= 175) {
+      gameOver = true;
+    } 
     println(score);
   } 
   
