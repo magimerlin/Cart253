@@ -49,7 +49,7 @@ void setup() {
 // if the ball has hit a paddle, and displaying everything.
 
 void draw() {
-  // Fill the background each frame so we have animation
+  // changes the color of the background depending on the score of either the right paddle or left paddle. 
   background(leftPaddle.score, rightPaddle.score, 0);
 
   //CHANGED: winner is determined and announced on screen as well as the indication of a game over.

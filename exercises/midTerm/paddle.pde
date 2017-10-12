@@ -107,7 +107,7 @@ class Paddle {
     }
   }
   
-  //
+  //This method calculates the score.
   void checkPaddleScore(Ball ball){
   // println(ballHitsPaddle);
     if (ball.isOffScreen() && ballHitsPaddle == true){
