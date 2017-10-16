@@ -23,7 +23,7 @@ class Paddle {
   // The fill color of the paddle
   //color paddleColor = color(255);
    
-   color paddleColor = color (255);
+  
 
   // The characters used to make the paddle move up and down, defined in constructor
   char upKey;
@@ -46,12 +46,6 @@ class Paddle {
     upKey = _upKey;
     downKey = _downKey;
   }
-
-//void newPaddleColor() {
-//for (int i = 0; i < width/2; i++) {
-//  float r = random (255);
-//  stroke (r);
-//  line (i,0,i,height); }
 
 
   
@@ -78,11 +72,12 @@ class Paddle {
     //paddleColor();
     rectMode(CENTER);
     
-    // Draw the paddle as a rectangle
+    // This draws the a bunch of lines over and over in different colors. 
     rect(x, y, WIDTH, HEIGHT);
-    stroke (color(random(255),random(255),random(255));
-    line (x, y- HEIGHT/2,x, y+ HEIGHT/2);
-    
+    for (int i = 0; i < WIDTH; i = i + 1) { 
+    stroke (color(random(255),random(255),random(255)));
+    line ((x-WIDTH/2) + i, y- HEIGHT/2,(x-WIDTH/2) + i, y+ HEIGHT/2);
+    }
   }
 
   // keyPressed()
