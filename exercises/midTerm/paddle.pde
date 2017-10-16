@@ -21,7 +21,9 @@ class Paddle {
   boolean ballHitsPaddle = false;
   
   // The fill color of the paddle
-  color paddleColor = color(255);
+  //color paddleColor = color(255);
+   
+   color paddleColor = color (255);
 
   // The characters used to make the paddle move up and down, defined in constructor
   char upKey;
@@ -45,9 +47,14 @@ class Paddle {
     downKey = _downKey;
   }
 
+//void newPaddleColor() {
+//for (int i = 0; i < width/2; i++) {
+//  float r = random (255);
+//  stroke (r);
+//  line (i,0,i,height); }
 
-  /////////////// Methods ///////////////
 
+  
   // update()
   //
   // Updates position based on velocity and constraints the paddle to the window
@@ -68,11 +75,14 @@ class Paddle {
   void display() {
     // Set display properties
     noStroke();
-    fill(paddleColor);
+    //paddleColor();
     rectMode(CENTER);
     
     // Draw the paddle as a rectangle
     rect(x, y, WIDTH, HEIGHT);
+    stroke (color(random(255),random(255),random(255));
+    line (x, y- HEIGHT/2,x, y+ HEIGHT/2);
+    
   }
 
   // keyPressed()
@@ -121,6 +131,7 @@ class Paddle {
   } 
   
   }
-  
-
 }
+
+  
+  
