@@ -19,11 +19,11 @@ class Paddle {
   int vy;
   int score; 
   boolean ballHitsPaddle = false;
-  
+
   // The fill color of the paddle
   //color paddleColor = color(255);
-   
-  
+
+
 
   // The characters used to make the paddle move up and down, defined in constructor
   char upKey;
@@ -48,7 +48,7 @@ class Paddle {
   }
 
 
-  
+
   // update()
   //
   // Updates position based on velocity and constraints the paddle to the window
@@ -59,31 +59,31 @@ class Paddle {
     y += vy;
 
     // Constrain the paddle's y position to be in the window
-    y = constrain(y,0 + HEIGHT/2,height - HEIGHT/2);
+    y = constrain(y, 0 + HEIGHT/2, height - HEIGHT/2);
   }
 
   // display()
   //
   // Display the paddle at its location
-  
+
   void display() {
     // Set display properties
     noStroke();
     //paddleColor();
     rectMode(CENTER);
-    
+
     // This draws the a bunch of lines over and over in different colors. 
     rect(x, y, WIDTH, HEIGHT);
     for (int i = 0; i < WIDTH; i = i + 1) { 
-    stroke (color(random(255),random(255),random(255)));
-    line ((x-WIDTH/2) + i, y- HEIGHT/2,(x-WIDTH/2) + i, y+ HEIGHT/2);
+      stroke (color(random(255), random(255), random(255)));
+      line ((x-WIDTH/2) + i, y- HEIGHT/2, (x-WIDTH/2) + i, y+ HEIGHT/2);
     }
   }
 
   // keyPressed()
   //
   // Called when keyPressed is called in the main program
-  
+
   void keyPressed() {
     // Check if the key is our up key
     if (key == upKey) {
@@ -111,22 +111,18 @@ class Paddle {
       vy = 0;
     }
   }
-  
+
   //This method   calculates the score.
-  void checkPaddleScore(Ball ball){
-  // println(ballHitsPaddle);
-    if (ball.isOffScreen() && ballHitsPaddle == true){
-    score+= 35; 
-    ballHitsPaddle= false;
-    
-    if (score >= 175) {
-      gameOver = true;
-    } 
-    println(score);
-  } 
-  
+  void checkPaddleScore(Ball ball) {
+    // println(ballHitsPaddle);
+    if (ball.isOffScreen() && ballHitsPaddle == true) {
+      score+= 35; 
+      ballHitsPaddle= false;
+
+      if (score >= 175) {
+        gameOver = true;
+      } 
+      println(score);
+    }
   }
 }
-
-  
-  

@@ -49,15 +49,15 @@ void setup() {
   shrinkPowerUp = new ShrinkPowerUp (width/2, height/2);
 
 
-// draw()
-//
-// Handles all the magic of making the paddles and ball move, checking
-// if the ball has hit a paddle, and displaying everything.
+  // draw()
+  //
+  // Handles all the magic of making the paddles and ball move, checking
+  // if the ball has hit a paddle, and displaying everything.
 
-//ADDED: original size of the circle.
-diameter = height - 10;
+  //ADDED: original size of the circle.
+  diameter = height - 10;
 }
- 
+
 
 
 void draw() {
@@ -65,36 +65,37 @@ void draw() {
   //background(leftPaddle.score, rightPaddle.score, 0);
   background (0);
 
-//CHANGED: winner is determined and announced on screen as well as the indication of a game over.
-if (gameOver==false) {
-  playGame();
-} else 
-{
-  String winner = "";
-  if (leftPaddle.score >= 175 )
+  //CHANGED: winner is determined and announced on screen as well as the indication of a game over.
+  if (gameOver==false) {
+    playGame();
+  } else 
   {
-    winner = "Left Wins";
-    text (winner, width/4, 340);
-  } else
-  {
-    winner = "Right Wins";
-    text (winner, width/4, 340);
+    String winner = "";
+    if (leftPaddle.score >= 175 )
+    {
+      winner = "Left Wins";
+      text (winner, width/4, 340);
+    } else
+    {
+      winner = "Right Wins";
+      text (winner, width/4, 340);
+    }
+    
+    fill (255);
+    text("GAME OVER ", width/5, height/2);
+    textSize(64);
   }
-  fill (255);
-  text("GAME OVER ", width/5, height/2);
-  textSize(64);
-}
 }
 
 void playGame () {    // Update the paddles and ball by calling their update methods
 
-//this changes the sixe of the circles in the background 
+  //this changes the sixe of the circles in the background 
 
- float d1 = 10 + (sin(angle) * diameter/2) + diameter/2;
+  float d1 = 10 + (sin(angle) * diameter/2) + diameter/2;
   float d2 = 10 + (sin(angle + PI/2) * diameter/2) + diameter/2;
   float d3 = 10 + (sin(angle + PI) * diameter/2) + diameter/2;
 
- noStroke();
+  noStroke();
   noStroke();
   //CHANGED: colour of the circles change depending on which side scores. 
   fill(leftPaddle.score, rightPaddle.score, 0);
@@ -103,7 +104,7 @@ void playGame () {    // Update the paddles and ball by calling their update met
   ellipse(width, height/2, d3, d3);
 
   angle += 0.02;  
-  
+
 
   leftPaddle.update();
   rightPaddle.update();

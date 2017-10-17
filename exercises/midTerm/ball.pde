@@ -71,6 +71,13 @@ class Ball {
   void reset() {
     x = width/2;
     y = height/2;
+    
+    //ADDED: this changes the direction in which the white ball throws itself towards the paddles. It either goes towards the right or left.
+    if (vx < 0) {
+      vx = SPEED;
+    } else {
+      vx = -SPEED;
+    }
   }
   
   // isOffScreen()
