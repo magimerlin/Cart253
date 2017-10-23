@@ -20,7 +20,8 @@ void setup() {
   size(640, 480);
   frameRate(10);
 
-  // QUESTION: What does this for loop do?
+  // QUESTION: What does this for loop do? ANSWER: This loop allows for the Griddies to be created however many times determined at the begginging of the code. (whether it is 100 griddies or 1000.)
+  // whenever i is less then 100 (in this case) 100 griddies will be drawn around the screen randomly only on whole numbers.
   for (int i = 0; i < griddies.length; i++) {
     int x = floor(random(0, width/gridSize));
     int y = floor(random(0, height/gridSize));

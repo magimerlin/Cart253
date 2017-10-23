@@ -35,9 +35,9 @@ class Griddie {
   void update() {
     
     // QUESTION: What is this if-statement for?
-    if (energy == 0) {
-      return;
-    }
+    ////if (energy == 0) {
+    ////  return;
+    //}
     
     // QUESTION: How does the Griddie movement updating work?
     int xMoveType = floor(random(-1,2));

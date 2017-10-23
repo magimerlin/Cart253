@@ -73,17 +73,20 @@ void draw() {
     String winner = "";
     if (leftPaddle.score >= 175 )
     {
+      textSize(24);
       winner = "Left Wins";
       text (winner, width/4, 340);
     } else
     {
+      textSize(24);
       winner = "Right Wins";
       text (winner, width/4, 340);
     }
-    
+     textSize(64);
+     textAlign(CENTER);
     fill (255);
-    text("GAME OVER ", width/5, height/2);
-    textSize(64);
+    text("GAME OVER ", width/2, height/2);
+   
   }
 }
 
