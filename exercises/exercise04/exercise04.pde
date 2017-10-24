@@ -28,7 +28,8 @@ void setup() {
     int y = floor(random(0, height/gridSize));
     griddies[i] = new Griddie(x * gridSize, y * gridSize, gridSize);
   }
-    for (int i = 0; i < griddieEaters.length; i++) {
+  
+  for (int i = 0; i < griddieEaters.length; i++) {
     int x = floor(random(0, width/gridSize));
     int y = floor(random(0, height/gridSize));
     griddieEaters[i] = new GriddieEater(x * gridSize, y * gridSize, gridSize);
@@ -57,17 +58,18 @@ void draw() {
         griddies[i].collide(griddies[j]);
       }
     }
-    
+
     // Display the griddies
     griddies[i].display();
   }
+  
   for (int i = 0; i < griddieEaters.length; i++) {
 
     // Update the griddies
     griddieEaters[i].update();
 
-    // Now go through all the griddies a second time...
-    for (int j = 0; j < griddieEaters.length; j++) {
+    // We go through the griddies in order to check if the griddie eaters are over lapping with the griddies. this way the griddies die when they cross paths w the eaters!
+    for (int j = 0; j < griddies.length; j++) {
       // QUESTION: What is this if-statement for? ANSWER: This statment ensures that when the griddies touch and cross paths something will happen. first we need to make the 100 griddies
       //and then loop through them again to check whether or not they overlap with each other.
       if (j != i) {
@@ -75,7 +77,7 @@ void draw() {
         griddieEaters[i].collide(griddies[j]);
       }
     }
-    
+
     // Display the griddies
     griddieEaters[i].display();
   }

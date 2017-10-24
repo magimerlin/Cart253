@@ -2,8 +2,8 @@
 
 class GriddieEater {
   // Limits for energy level and gains/losses
-  
-  int energy; 
+  //the griddie eaters innitial energy was zero, they were technically so pale they were invisiible so I just put their energy at 255 so you can see them.
+  int energy = 255; 
   int collideEnergy = -255;
   
   // Position, size, energy, and fill color
@@ -28,12 +28,16 @@ class GriddieEater {
   // Move the Griddie and update its energy levels
   void update() {
     
+     if (energy == 0) {
+      return;
+    }
+    
  int xMoveType = floor(random(-1,2));
     int yMoveType = floor(random(-1,2));
     x += size * xMoveType;
     y += size * yMoveType;
     
-    // QUESTION: What are these if statements doing?
+
     if (x < 0) {
       x += width;
     }
@@ -55,12 +59,10 @@ class GriddieEater {
   // and updates energy level
   
   void collide(Griddie other) {
-    // QUESTION: What is this if-statement for?
-  
-    // QUESTION: What does this if-statement check?
+
     if (x == other.x && y == other.y) {
-      // Increase this Griddie's energy
-      energy -= collideEnergy;
+     //DECREASE THE GRIDDIES ENERGY TO ZERO! before I had the griddie eaters energy being added with the collide energy instead of the griddies. now the eaters will be able to eat!
+      other.energy += collideEnergy;
       // Constrain the energy level to be within bound
     }
   }
