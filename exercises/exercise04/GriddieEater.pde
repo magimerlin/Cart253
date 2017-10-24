@@ -4,7 +4,7 @@ class GriddieEater {
   // Limits for energy level and gains/losses
   
   int energy; 
-  int collideEnergy = -10;
+  int collideEnergy = -255;
   
   // Position, size, energy, and fill color
   int x;
