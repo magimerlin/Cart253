@@ -34,18 +34,18 @@ class Griddie {
   // Move the Griddie and update its energy levels
   void update() {
     
-    // QUESTION: What is this if-statement for?
-    ////if (energy == 0) {
-    ////  return;
-    //}
+    // QUESTION: What is this if-statement for? ANSWER: if the griddies energy is 0 then the griddie is not redrawn.
+    if (energy == 0) {
+      return;
+    }
     
-    // QUESTION: How does the Griddie movement updating work?
+    // QUESTION: How does the Griddie movement updating work?  ANSWER: 
     int xMoveType = floor(random(-1,2));
     int yMoveType = floor(random(-1,2));
     x += size * xMoveType;
     y += size * yMoveType;
     
-    // QUESTION: What are these if statements doing?
+    // QUESTION: What are these if statements doing? ANSWER: this keeps the griddies within the confines of the size window.
     if (x < 0) {
       x += width;
     }
@@ -73,12 +73,12 @@ class Griddie {
   // and updates energy level
   
   void collide(Griddie other) {
-    // QUESTION: What is this if-statement for?
+    // QUESTION: What is this if-statement for? ANSWER: if either griddies energies are equal to zero then the do not return on the screen.
     if (energy == 0 || other.energy == 0) {
       return;
     }
     
-    // QUESTION: What does this if-statement check?
+    // QUESTION: What does this if-statement check? ANSWER: this checks when the griddies intersect and then adds energy to the colidded griddies. 
     if (x == other.x && y == other.y) {
       // Increase this Griddie's energy
       energy += collideEnergy;
@@ -91,7 +91,7 @@ class Griddie {
   //
   // Draw the Griddie on the screen as a rectangle
   void display() {
-    // QUESTION: What does this fill line do?
+    // QUESTION: What does this fill line do? ANSWER: this allows for the color of the griddie to correspond with the amount of energy it has. 
     fill(fill, energy); 
     noStroke();
     rect(x, y, size, size);
