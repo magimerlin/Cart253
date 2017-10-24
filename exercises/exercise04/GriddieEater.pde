@@ -28,7 +28,11 @@ class GriddieEater {
   // Move the Griddie and update its energy levels
   void update() {
     
-
+ int xMoveType = floor(random(-1,2));
+    int yMoveType = floor(random(-1,2));
+    x += size * xMoveType;
+    y += size * yMoveType;
+    
     // QUESTION: What are these if statements doing?
     if (x < 0) {
       x += width;
