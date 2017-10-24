@@ -10,7 +10,7 @@
 int gridSize = 20;
 // An array storing all the griddies
 Griddie[] griddies = new Griddie[100];
-GriddieEater[] griddieEaters = new GriddieEater[20];
+GriddieEater[] griddieEaters = new GriddieEater[5];
 
 // setup()
 //
