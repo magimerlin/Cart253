@@ -10,6 +10,7 @@ void setup() {
   surface.setResizable(true); 
   //matrtrixSpinner = new 
 
+//this array was addded to allow for new mandalas to be drawn randomly on the screen.
   for (int i = 0; i < mandalas.length; i++) {
     int x = floor(random (0, width));
     int y = floor(random(0, height));
@@ -26,6 +27,7 @@ void setup() {
 void draw() {
   background(0);
   
+  //DRAWING THE MANDALA!
     for (int i = 0; i < mandalas.length; i++) {
       mandalas[i].draw();
     }
@@ -42,6 +44,7 @@ void draw() {
   spinSpeed += 0.001;
   stroke(random(255), random(255), random(255));
 
+//The main mandala that rotates with the rectangle is drawn using the mandala class.
   mainMandala.draw();
 }
 
