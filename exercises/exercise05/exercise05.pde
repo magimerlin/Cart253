@@ -1,6 +1,6 @@
 float theta = 0;
 float spinSpeed = 0.1;
-Mandala[] mandalas = new Mandala[5];
+Mandala[] mandalas = new Mandala[5]; //the amount 
 Mandala mainMandala;
 
 
@@ -27,7 +27,7 @@ void setup() {
 void draw() {
   background(0);
   
-  //DRAWING THE MANDALA!
+  //DRAWING THE MANDALA! source: taken from pippins math slides. 
     for (int i = 0; i < mandalas.length; i++) {
       mandalas[i].draw();
     }
