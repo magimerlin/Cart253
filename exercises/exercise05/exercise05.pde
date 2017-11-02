@@ -1,6 +1,6 @@
 float theta = 0;
 float spinSpeed = 0.1;
-Mandala[] mandalas = new Mandala[5]; //the amount 
+Mandala[] mandalas = new Mandala[4]; //the amount of mandalas displayed on the screen.
 Mandala mainMandala;
 
 
@@ -49,5 +49,5 @@ void draw() {
 }
 
 
-void mouseClicked() {
-}
+//void mouseClicked() {
+//}
