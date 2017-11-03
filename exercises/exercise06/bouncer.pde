@@ -21,6 +21,9 @@ class Bouncer {
 
   // The default fill colour of the Bouncer
   color defaultColor;
+  
+  int targetX;
+  int targetY;
 
   // Bouncer(tempX,tempY,tempVX,tempVY,tempSize,tempDefaultColor)
   //
@@ -78,5 +81,30 @@ class Bouncer {
     noStroke();
     fill(fillColor);
     ellipse(x, y, size, size);
+  }
+  
+  //function added! this allows for the bouncers to follow the blue ellipse but 
+  //i haven't added an if statment they all jump on top of each other 
+  void moveToTarget()
+  {
+   targetX = ballX;
+   targetY= ballY;
+    //x=targetX;
+   //y=targetY;
+   
+   float distX = targetX-x;
+   
+   //if(distX>0)
+   //{
+   //  x+=distX/10;
+   //}
+   //else if(distX<0)
+   //{
+   //   x-=distX/10;
+   //}
+   
+    
+    
+    
   }
 }

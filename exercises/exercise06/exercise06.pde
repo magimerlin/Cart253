@@ -51,10 +51,7 @@ void draw() {
   // Draw the video frame to the screen
   image(video, 0, 0);
 
-  for (int i = 0; i < bouncers.length; i++) {
-    bouncers[i].update();
-    bouncers[i].display();
-  }
+ 
 
   if (video.available()) {
 
@@ -120,6 +117,12 @@ void draw() {
   noStroke();
   fill(0, 0, 255);
   ellipse(ballX, ballY, 20, 20);
+  
+   for (int i = 0; i < bouncers.length; i++) {
+    bouncers[i].update();
+    bouncers[i].moveToTarget();
+    bouncers[i].display();
+  }
 }
 
 void handleVideoInput() {
