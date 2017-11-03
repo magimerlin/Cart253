@@ -1,6 +1,6 @@
 // Exercise 06
 
-//CREDITS: the motion detecting code was sourced form a man in a proccessing chat room!
+//CREDITS: the motion detecting code was sourced from a man in a proccessing chat room!
 //his username is Mimansoob! Thanks Mimansoob!
 
 // Import the video library
