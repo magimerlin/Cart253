@@ -87,24 +87,30 @@ class Bouncer {
   //i haven't added an if statment they all jump on top of each other 
   void moveToTarget()
   {
-   targetX = ballX;
-   targetY= ballY;
-    //x=targetX;
-   //y=targetY;
+   mouseX = targetX;
+   mouseY= targetY;
+   
+
+
    
    //meant to allow the bouncers to FOLLOW the blue ellipse instead of pilling on top of it.
    float distX = targetX-x;
    
-   if(distX>0)
+   if(distX>2)
    {
-     x+=distX/10;
-   }
-   else if(distX<0)
-   {
-      x-=distX/10;
+     x=x+(distX/10);
    }
    
-    float distY = targetY-y;
+   if(distX<2)
+   {
+      x=x-(distX/10);
+   }
+   /*else 
+   {
+     x=targetX;
+   }*/
+   
+    /*float distY = targetY-y;
    
    if(distY>0)
    {
@@ -114,7 +120,8 @@ class Bouncer {
    {
       y-=distY/10;
    }
-   
+   */
+  // }
     
     
     
