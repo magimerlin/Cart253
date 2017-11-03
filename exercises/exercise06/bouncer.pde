@@ -92,16 +92,28 @@ class Bouncer {
     //x=targetX;
    //y=targetY;
    
+   //meant to allow the bouncers to FOLLOW the blue ellipse instead of pilling on top of it.
    float distX = targetX-x;
    
-   //if(distX>0)
-   //{
-   //  x+=distX/10;
-   //}
-   //else if(distX<0)
-   //{
-   //   x-=distX/10;
-   //}
+   if(distX>0)
+   {
+     x+=distX/10;
+   }
+   else if(distX<0)
+   {
+      x-=distX/10;
+   }
+   
+    float distY = targetY-y;
+   
+   if(distY>0)
+   {
+     y+=distY/10;
+   }
+   else if(distY<0)
+   {
+      y-=distY/10;
+   }
    
     
     

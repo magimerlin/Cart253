@@ -119,7 +119,7 @@ void draw() {
   ellipse(ballX, ballY, 20, 20);
   
    for (int i = 0; i < bouncers.length; i++) {
-    bouncers[i].update();
+    //bouncers[i].update();
     bouncers[i].moveToTarget();
     bouncers[i].display();
   }
