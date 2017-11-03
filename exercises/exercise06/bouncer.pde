@@ -122,7 +122,7 @@ class Bouncer {
       {
         timePassed = millis()-startTime;
       }
-      if(timePassed>1000)
+      if(timePassed>2500)
       {
         startTimer =false;
       }

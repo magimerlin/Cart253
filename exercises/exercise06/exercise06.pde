@@ -1,6 +1,7 @@
 // Exercise 06
-//
-// Using the webcam as input to play with Bouncers.
+
+//CREDITS: the motion detecting code was sourced form a man in a proccessing chat room!
+//his username is Mimansoob! Thanks Mimansoob!
 
 // Import the video library
 import processing.video.*;
@@ -63,6 +64,7 @@ void draw() {
   video.loadPixels();
   prevFrame.loadPixels();
 
+//drawing the fun and funky blue ellipse that detects your mositon!
   Mx = 0;
   My = 0;
   ave = 0;
@@ -118,6 +120,8 @@ void draw() {
   fill(0, 0, 255);
   ellipse(ballX, ballY, 20, 20);
   
+  //move to target added to all the bouncers! so that the bouncers can, as the kids say,
+  //follow the leader! the blue ellipse!
    for (int i = 0; i<bouncers.length; i++) {
     //bouncers[i].update();
     bouncers[i].moveToTarget();
