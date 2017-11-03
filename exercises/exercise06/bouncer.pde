@@ -21,9 +21,13 @@ class Bouncer {
 
   // The default fill colour of the Bouncer
   color defaultColor;
-  
+
   int targetX;
   int targetY;
+  float timePassed =0;
+  float startTime =0;
+  boolean startTimer = false;
+  
 
   // Bouncer(tempX,tempY,tempVX,tempVY,tempSize,tempDefaultColor)
   //
@@ -82,20 +86,48 @@ class Bouncer {
     fill(fillColor);
     ellipse(x, y, size, size);
   }
-  
+
   //function added! this allows for the bouncers to follow the blue ellipse but 
   //i haven't added an if statment they all jump on top of each other 
   void moveToTarget()
   {
     //supposed to allow for the bouncers to follow the x and y of the blue ellipse.
     //Pvector added!! and now it works! bouncers move towards blue ellipse.
-   
-   PVector mouse = new PVector(ballX,ballY);
-   PVector loc = new PVector(x,y);
-   PVector dist = PVector.sub(mouse,loc);
-   dist.normalize();
-   dist.mult(2);
-   x+=dist.x;
-   y+=dist.y;
+
+    PVector mouse = new PVector(ballX, ballY);
+    PVector loc = new PVector(x, y);
+    PVector dist = PVector.sub(mouse, loc);
+    
+    //timer added! this is so that the bouncers have more of an independent quality to them.
+    //they move toward the blue ellipse for 1 second and then break apart once the timer 
+    //has expired. 
+    if (dist.mag()>1 && startTimer ==false)
+    {
+      dist.normalize();
+      dist.mult(5);
+      x+=dist.x;
+      y+=dist.y;
+    } 
+    
+    else
+    {
+      if (startTimer ==false)
+      {
+        timePassed =0;
+        startTime =millis(); 
+        startTimer =true;
+      }
+      
+      if (startTimer ==true)
+      {
+        timePassed = millis()-startTime;
+      }
+      if(timePassed>1000)
+      {
+        startTimer =false;
+      }
+       
+        update();
+    }
   }
 }
