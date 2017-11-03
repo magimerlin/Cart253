@@ -87,43 +87,15 @@ class Bouncer {
   //i haven't added an if statment they all jump on top of each other 
   void moveToTarget()
   {
-   mouseX = targetX;
-   mouseY= targetY;
+    //supposed to allow for the bouncers to follow the x and y of the blue ellipse.
+    //Pvector added!! and now it works! bouncers move towards blue ellipse.
    
-
-
-   
-   //meant to allow the bouncers to FOLLOW the blue ellipse instead of pilling on top of it.
-   float distX = targetX-x;
-   
-   if(distX>2)
-   {
-     x=x+(distX/10);
-   }
-   
-   if(distX<2)
-   {
-      x=x-(distX/10);
-   }
-   /*else 
-   {
-     x=targetX;
-   }*/
-   
-    /*float distY = targetY-y;
-   
-   if(distY>0)
-   {
-     y+=distY/10;
-   }
-   else if(distY<0)
-   {
-      y-=distY/10;
-   }
-   */
-  // }
-    
-    
-    
+   PVector mouse = new PVector(ballX,ballY);
+   PVector loc = new PVector(x,y);
+   PVector dist = PVector.sub(mouse,loc);
+   dist.normalize();
+   dist.mult(2);
+   x+=dist.x;
+   y+=dist.y;
   }
 }
