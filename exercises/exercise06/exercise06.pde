@@ -3,6 +3,9 @@
 //CREDITS: the motion detecting code was sourced from a man in a proccessing chat room!
 //his username is Mimansoob! Thanks Mimansoob!
 
+// You can now move these boring looking bouncers with your mind! 
+//im not even lying! you move your hand with your mind don't ya!
+
 // Import the video library
 import processing.video.*;
 //import blobDetection.*;
