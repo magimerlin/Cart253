@@ -12,7 +12,7 @@ import processing.video.*;
 
 // The capture object for reading from the webcam
 Capture video;
-
+//
 PImage prevFrame;
 float threshold = 150;
 int Mx = 0;
@@ -44,6 +44,7 @@ void setup() {
   // Start up the webcam
   video = new Capture(this, 640, 480, 30);
   video.start();
+  //launches the video window and picks up all the colored pixles that make up the frame. 
   prevFrame = createImage (video.width, video.height, RGB);
 }
 
@@ -56,7 +57,7 @@ void draw() {
   image(video, 0, 0);
 
 
-
+//this is the code that launches the video window.
   if (video.available()) {
 
     prevFrame.copy(video, 0, 0, video.width, video.height, 0, 0, video.width, video.height); 
@@ -67,35 +68,38 @@ void draw() {
   video.loadPixels();
   prevFrame.loadPixels();
 
-  //drawing the fun and funky blue ellipse that detects your position on the screen!
+  //
   Mx = 0;
   My = 0;
   ave = 0;
 
-  //this for statment makes sure that the blue ellipse stays within the confines of the video window.
+  //Going through every pixel in the video.
   for (int x = 0; x < video.width; x ++ ) {
     for (int y = 0; y < video.height; y ++ ) {
 
-
+      //It's getting the color of the current frame and the previous frame. 
       int loc = x + y*video.width;            
       color current = video.pixels[loc];      
       color previous = prevFrame.pixels[loc]; 
 
-      //these have to do with the previous position of the subject on the screen and the current position is what calculates the 
-      //movement of the colored pixels on the screen
+      //this is splitting the data into red,green and blue.
+      //
       float r1 = red(current); 
       float g1 = green(current); 
       float b1 = blue(current);
       float r2 = red(previous); 
       float g2 = green(previous); 
       float b2 = blue(previous);
+      //works out how different the pixels are from frame to frame.
       float diff = dist(r1, g1, b1, r2, g2, b2);
 
       //pixels have to be moving above a certain threshold to allow for the ellipse to actually move.  
+      //how different the pixels have to be before the ellipse starts to react.
       if (diff > threshold) { 
         pixels[loc] = video.pixels[loc];
         Mx += x;
         My += y;
+        //ave is the count of all of the pixles over time.
         ave++;
       } else {
 
