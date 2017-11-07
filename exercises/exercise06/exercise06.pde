@@ -22,7 +22,7 @@ int ave = 0;
 //where the ball starts off on screen.
 int ballX = width/8;
 int ballY = height/8;
-  //the speed at which the object moves around the screen. 
+//the speed at which the object moves around the screen. 
 int rsp = 5;
 
 
@@ -51,11 +51,11 @@ void setup() {
 void draw() {
 
   handleVideoInput();
-  
+
   // Draw the video frame to the screen
   image(video, 0, 0);
 
- 
+
 
   if (video.available()) {
 
@@ -67,20 +67,22 @@ void draw() {
   video.loadPixels();
   prevFrame.loadPixels();
 
-//drawing the fun and funky blue ellipse that detects your mositon!
+  //drawing the fun and funky blue ellipse that detects your position on the screen!
   Mx = 0;
   My = 0;
   ave = 0;
 
-
+  //this for statment makes sure that the blue ellipse stays within the confines of the video window.
   for (int x = 0; x < video.width; x ++ ) {
     for (int y = 0; y < video.height; y ++ ) {
+
 
       int loc = x + y*video.width;            
       color current = video.pixels[loc];      
       color previous = prevFrame.pixels[loc]; 
 
-
+      //these have to do with the previous position of the subject on the screen and the current position is what calculates the 
+      //movement of the colored pixels on the screen
       float r1 = red(current); 
       float g1 = green(current); 
       float b1 = blue(current);
@@ -89,7 +91,7 @@ void draw() {
       float b2 = blue(previous);
       float diff = dist(r1, g1, b1, r2, g2, b2);
 
-
+      //pixels have to be moving above a certain threshold to allow for the ellipse to actually move.  
       if (diff > threshold) { 
         pixels[loc] = video.pixels[loc];
         Mx += x;
@@ -103,6 +105,8 @@ void draw() {
   }
   fill(255);
   rect(0, 0, width, height);
+
+  //this is the actual movement of the ellipse. if commented out the ellipse remains in the top right corner. it allows for the ellipse to follow the changing pixels in the video window. 
   if (ave != 0) { 
     Mx = Mx/ave;
     My = My/ave;
@@ -122,10 +126,10 @@ void draw() {
   noStroke();
   fill(0, 0, 255);
   ellipse(ballX, ballY, 20, 20);
-  
+
   //move to target added to all the bouncers! so that the bouncers can, as the kids say,
   //follow the leader! the blue ellipse!
-   for (int i = 0; i<bouncers.length; i++) {
+  for (int i = 0; i<bouncers.length; i++) {
     //bouncers[i].update();
     bouncers[i].moveToTarget();
     bouncers[i].display();
