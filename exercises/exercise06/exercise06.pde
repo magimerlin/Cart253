@@ -23,7 +23,7 @@ int ave = 0;
 int ballX = width/8;
 int ballY = height/8;
 //the speed at which the object moves around the screen. 
-int rsp = 5;
+int speed = 5;
 
 
 // An array of bouncers to play with
@@ -115,15 +115,15 @@ void draw() {
     Mx = Mx/ave;
     My = My/ave;
   }
-  if (Mx > ballX + rsp/2 && Mx > 50) {
-    ballX+= rsp;
-  } else if (Mx < ballX - rsp/2 && Mx > 50) {
-    ballX-= rsp;
+  if (Mx > ballX + speed/2 && Mx > 50) {
+    ballX+= speed;
+  } else if (Mx < ballX - speed/2 && Mx > 50) {
+    ballX-= speed;
   }
-  if (My > ballY + rsp/2 && My > 50) {
-    ballY+= rsp;
-  } else if (My < ballY - rsp/2 && My > 50) {
-    ballY-= rsp;
+  if (My > ballY + speed/2 && My > 50) {
+    ballY+= speed;
+  } else if (My < ballY - speed/2 && My > 50) {
+    ballY-= speed;
   }
 
   updatePixels();
