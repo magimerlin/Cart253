@@ -4,27 +4,33 @@
 
 import processing.sound.*;
 PImage img;
-SoundFile file;
-SoundFile file2;
+SoundFile sax;
+SoundFile guitar;
+SoundFile drum;
+SoundFile hihat;
+
 //these booleans make music not playing as the default so that later with mouse clicked 
 //I can make clicking the quadrent of the window and music will stop and play on click
-boolean file1IsPlaying =false;
-boolean file2IsPlaying =false;
+boolean saxIsPlaying =false;
+boolean guitarIsPlaying =false;
+boolean drumIsPlaying= false;
+boolean hihatIsPlaying=false;
 
 
 void setup() {
-  size(800,800);
+  size(800, 800);
   frameRate(30);
   img = loadImage("hats.jpg");
   img.loadPixels();
   // Only need to load the pixels[] array once, because we're only
   // manipulating pixels[] inside draw(), not drawing shapes.
   loadPixels();
-  
+
   //these are the files set to play during the running of the program
-   file = new SoundFile(this, "groove.mp3");
-   file2 = new SoundFile(this, "looperman-l-0747210-0099941-ferryterry-100-bpm-guitar-2.mp3");
- 
+  sax = new SoundFile(this, "sax.mp3");
+  guitar = new SoundFile(this, "guitar.mp3");
+  drum = new SoundFile( this, "drum.mp3");
+  hihat = new SoundFile(this, "hihat.mp3");
 }
 
 //this code basically alters the apperence of the image and makes everything black. once the mouse hovers over the image the pixels show the true color. 
@@ -34,7 +40,7 @@ void draw() {
       // Calculate the 1D location from a 2D grid
       int loc = x + y*img.width;
       // Get the R,G,B values from image
-      float r,g,b;
+      float r, g, b;
       r = red (img.pixels[loc]);
       g = green (img.pixels[loc]);
       b = blue (img.pixels[loc]);
@@ -57,34 +63,46 @@ void draw() {
   updatePixels();
 }
 
- //void mousePressed()
- //{
- //  if(mouseX>0 && mouseX < width/2 && mouseY>0 && mouseY< height/2)
- //  {
- //    println("trumpet");
- //    if(file1IsPlaying ==false)
- //    {
- //      file.loop();
- //      file1IsPlaying=true;
- //    }
- //    else if(file1IsPlaying ==true)
- //    {
- //      file.stop();
- //      file1IsPlaying=false;
- //    }
- //  }
- //  else if(mouseX>width/2 && mouseX < width && mouseY>0 && mouseY< height/2)
- //  {
- //    println("piano");
- //      if(file2IsPlaying ==false)
- //    {
- //      file2.loop();
- //      file2IsPlaying=true;
- //    }
- //    else if(file2IsPlaying ==true)
- //    {
- //      file2.stop();
- //      file2IsPlaying=false;
- //    }
- //  }
- }
+//the if statments are what create the 4 sections of the image that are clickable. 
+void mousePressed()
+{
+  if (mouseX>0 && mouseX < width/2 && mouseY>0 && mouseY< height/2)
+  {
+    println("sax");
+    if (saxIsPlaying ==false)
+    {
+      sax.loop();
+      saxIsPlaying=true;
+    } else if (saxIsPlaying ==true)
+    {
+      sax.stop();
+      saxIsPlaying=false;
+    }
+  } else if (mouseX>width/2 && mouseX < width && mouseY>0 && mouseY< height/2)
+  {
+    println("guitar");
+    if (guitarIsPlaying ==false)
+    {
+      guitar.loop();
+      guitarIsPlaying=true;
+    } else if (guitarIsPlaying ==true)
+    {
+      guitar.stop();
+      guitarIsPlaying=false;
+    }
+  }
+
+  if (mouseX>0 && mouseX<width/2 && mouseY<height/2 && mouseY> height)
+  {
+    println("drum");
+    if (drumIsPlaying ==false)
+    {
+      drum.loop();
+      drumIsPlaying=true;
+    } else if (drumIsPlaying ==true)
+    {
+      drum.stop();
+      drumIsPlaying=false;
+    }
+  }
+}
