@@ -4,17 +4,30 @@
 
 import processing.sound.*;
 PImage img;
+SoundFile file;
+SoundFile file2;
+//these booleans make music not playing as the default so that later with mouse clicked 
+//I can make clicking the quadrent of the window and music will stop and play on click
+boolean file1IsPlaying =false;
+boolean file2IsPlaying =false;
+
 
 void setup() {
-  size(800,1200);
+  size(800,800);
   frameRate(30);
-  img = loadImage("jazz.jpg");
+  img = loadImage("hats.jpg");
   img.loadPixels();
   // Only need to load the pixels[] array once, because we're only
   // manipulating pixels[] inside draw(), not drawing shapes.
   loadPixels();
+  
+  //these are the files set to play during the running of the program
+   file = new SoundFile(this, "groove.mp3");
+   file2 = new SoundFile(this, "looperman-l-0747210-0099941-ferryterry-100-bpm-guitar-2.mp3");
+ 
 }
 
+//this code basically alters the apperence of the image and makes everything black. once the mouse hovers over the image the pixels show the true color. 
 void draw() {
   for (int x = 0; x < img.width; x++) {
     for (int y = 0; y < img.height; y++ ) {
@@ -43,3 +56,35 @@ void draw() {
   }
   updatePixels();
 }
+
+ //void mousePressed()
+ //{
+ //  if(mouseX>0 && mouseX < width/2 && mouseY>0 && mouseY< height/2)
+ //  {
+ //    println("trumpet");
+ //    if(file1IsPlaying ==false)
+ //    {
+ //      file.loop();
+ //      file1IsPlaying=true;
+ //    }
+ //    else if(file1IsPlaying ==true)
+ //    {
+ //      file.stop();
+ //      file1IsPlaying=false;
+ //    }
+ //  }
+ //  else if(mouseX>width/2 && mouseX < width && mouseY>0 && mouseY< height/2)
+ //  {
+ //    println("piano");
+ //      if(file2IsPlaying ==false)
+ //    {
+ //      file2.loop();
+ //      file2IsPlaying=true;
+ //    }
+ //    else if(file2IsPlaying ==true)
+ //    {
+ //      file2.stop();
+ //      file2IsPlaying=false;
+ //    }
+ //  }
+ }
