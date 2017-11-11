@@ -63,7 +63,7 @@ void draw() {
   updatePixels();
 }
 
-//the if statments are what create the 4 sections of the image that are clickable. 
+//the if statments are what create the 4 sections of the image that are clickabl, each section of the image start and stops when clicked. 
 void mousePressed()
 {
   if (mouseX>0 && mouseX < width/2 && mouseY>0 && mouseY< height/2)
@@ -92,7 +92,7 @@ void mousePressed()
     }
   }
 
-  if (mouseX>0 && mouseX<width/2 && mouseY<height/2 && mouseY> height)
+  if (mouseX>0 && mouseX<width/2 && mouseY>0 && mouseY >height/2)
   {
     println("drum");
     if (drumIsPlaying ==false)
@@ -103,6 +103,20 @@ void mousePressed()
     {
       drum.stop();
       drumIsPlaying=false;
+    }
+  }
+  
+  if (mouseX>0 && mouseX>width/2 && mouseY>height/2 && mouseY < height)
+  {
+    println("hihate");
+    if (hihatIsPlaying ==false)
+    {
+      hihat.loop();
+      hihatIsPlaying=true;
+    } else if (hihatIsPlaying ==true)
+    {
+      hihat.stop();
+      hihatIsPlaying=false;
     }
   }
 }
