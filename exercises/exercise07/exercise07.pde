@@ -31,6 +31,7 @@ void setup() {
   guitar = new SoundFile(this, "guitar.mp3");
   drum = new SoundFile( this, "drum.mp3");
   hihat = new SoundFile(this, "hihat.mp3");
+
 }
 
 //this code basically alters the apperence of the image and makes everything black. once the mouse hovers over the image the pixels show the true color. 
@@ -84,6 +85,7 @@ void mousePressed()
     if (guitarIsPlaying ==false)
     {
       guitar.loop();
+       guitar = new SoundFile(this, "guitar.mp3");
       guitarIsPlaying=true;
     } else if (guitarIsPlaying ==true)
     {
