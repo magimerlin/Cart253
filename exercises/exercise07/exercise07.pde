@@ -84,7 +84,6 @@ void mousePressed()
     println("guitar");
     if (guitarIsPlaying ==false)
     {
-      guitar = new SoundFile(this, "guitar.mp3");
       guitar.loop();
       guitarIsPlaying=true;
     } else if (guitarIsPlaying ==true)
