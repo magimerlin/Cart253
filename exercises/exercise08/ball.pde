@@ -25,6 +25,28 @@ class Ball {
     x += vx;
     y += vy; 
     
+    if (y > height - SIZE) {
+      // set the position to be on the floor
+      y = height - SIZE;
+      // and make the y speed 90% of what it was,
+      // but in the opposite direction
+      vy = -vy ;
+
+      //switch the direction
+      //speedY = speedY;
+    } else if (y <= 350) { 
+      // if the ball hits the top,
+      // make it bounce off
+      vy = -vy;
+    }
+    
+    if ( x< 0) {
+    x = x + width;
+    }
+    
+    else if ( x> width) {
+      x = x-width;
+    }
    }
    
     void display() {
