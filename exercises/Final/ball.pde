@@ -4,8 +4,8 @@ a bouncing ball
 
 class Ball {
 
-  int SPEED = 10;
-  int SIZE = 16;
+  int SPEED = 5;
+  int SIZE = 25;
 
   int x;
   int y;
@@ -14,59 +14,21 @@ class Ball {
   int vx;
   int vy;
 
-  char rightKey;
-  char leftKey;
 
-  Ball(int _x, int _y, char _rigthKey, char _lefkey ) {
+  Ball(int _x, int _y ) {
     x = _x;
     y = _y;
-    vx = SPEED;
+    vx = 0;
     vy = SPEED;
 
-    rightKey = _rightKey;
-    leftKey = _leftKey;
+ 
   }
 
   void update() {
 
     x += vx;
     y += vy;
-  }
-
-  //void collide (Paddles paddles, Paddle otherPaddles) {
-  //}
-
-  void display() {
-
-    noStroke();
-    fill(255);
-  }
-
-  void setup() {
-    size(400, 700);
-    smooth();
-    noStroke();
-
-    // change the mode we draw circles so they are
-    // aligned in the top left
-    ellipseMode(CENTER);
-  }
-
-  void draw() {
-    //clear the background and set the fill colour
-    background(0);
-    fill(255);
-
-    //draw the circle in it's current position
-    ellipse(x, y, SIZE, SIZE);
-
-    //add a little gravity to the speed
-    //speedY = speedY + .7;  
-
-    //add speed to the ball's
-    x = y + vy; 
-
-
+    
     if (y > height - SIZE) {
       // set the position to be on the floor
       y = height - SIZE;
@@ -76,21 +38,52 @@ class Ball {
 
       //switch the direction
       //speedY = speedY;
-    } else if (y <= 0) { 
+    } else if (y <= 350) { 
       // if the ball hits the top,
       // make it bounce off
       vy = -vy;
     }
+    
+    if ( x< 0) {
+    x = x + width;
+    }
+    
+    else if ( x> width) {
+      x = x-width;
+    }
+   
   }
+
+  //void collide (Paddles paddles, Paddle otherPaddles) {
+  //}
+
+  void display() {
+
+    noStroke();
+    fill(255);
+    //draw the circle in it's current position
+    ellipse(x, y, SIZE, SIZE);
+  }
+
+ 
 
   void keyPressed() {
 
-    if (key == rightKey) {
-
+    if (keyCode == RIGHT) {
       vx = SPEED;
-    } else if (key == leftKey) {
-
+    } else if (keyCode == LEFT) {
       vx = -SPEED;
+    }
+  }
+
+  void keyReleased() {
+
+    if (key == RIGHT && vx < 0) {
+
+      vx = 0; // I want the ball on key release to bounce in place.
+    } else if (key == LEFT && vx > 0) {
+
+      vx = 0;
     }
   }
 }
