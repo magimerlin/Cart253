@@ -56,5 +56,9 @@ class Ball {
     //draw the circle in it's current position
     ellipse(x, y, SIZE, SIZE);
   }
+  
+  void keyPressed() {
 
+   
+  }
 }
