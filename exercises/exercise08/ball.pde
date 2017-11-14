@@ -17,14 +17,12 @@ class Ball {
     y = _y;
     vx = 0;
     vy = SPEED;
-
- 
   }
-   void update() {
+  void update() {
 
     x += vx;
     y += vy; 
-    
+
     if (y > height - SIZE) {
       // set the position to be on the floor
       y = height - SIZE;
@@ -39,36 +37,39 @@ class Ball {
       // make it bounce off
       vy = -vy;
     }
-    
+
     if ( x< 0) {
-    x = x + width;
-    }
-    
-    else if ( x> width) {
+      x = x + width;
+    } else if ( x> width) {
       x = x-width;
     }
-   }
-   
-    void display() {
+  }
+
+  void display() {
 
     noStroke();
     fill(255);
     //draw the circle in it's current position
     ellipse(x, y, SIZE, SIZE);
   }
-  
+
   void keyPressed() {
- 
+
     if (keyCode == RIGHT) {
       vx = SPEED;
     } else if (keyCode == LEFT) {
       vx = -SPEED;
     }
   }
-   
-   void keyReleased() {
 
- 
+  void keyReleased() {
+
+    if (key == RIGHT && vx < 0) {
+
+      vx = 0; // I want the ball on key release to bounce in place.
+    } else if (key == LEFT && vx > 0) {
+
+      vx = 0;
+    }
   }
-  
 }
