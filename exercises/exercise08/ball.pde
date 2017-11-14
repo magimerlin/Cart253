@@ -20,3 +20,19 @@ class Ball {
 
  
   }
+   void update() {
+
+    x += vx;
+    y += vy; 
+    
+   }
+   
+    void display() {
+
+    noStroke();
+    fill(255);
+    //draw the circle in it's current position
+    ellipse(x, y, SIZE, SIZE);
+  }
+
+}
