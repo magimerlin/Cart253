@@ -58,7 +58,13 @@ class Ball {
   }
   
   void keyPressed() {
-
+ 
+    if (keyCode == RIGHT) {
+      vx = SPEED;
+    } else if (keyCode == LEFT) {
+      vx = -SPEED;
+    }
+  }
    
   }
 }
