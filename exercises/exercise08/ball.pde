@@ -61,15 +61,4 @@ class Ball {
       vx = -SPEED;
     }
   }
-
-  void keyReleased() {
-
-    if (key == RIGHT && vx < 0) {
-
-      vx = 0; // I want the ball on key release to bounce in place.
-    } else if (key == LEFT && vx > 0) {
-
-      vx = 0;
-    }
-  }
 }
