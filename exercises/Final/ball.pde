@@ -2,43 +2,45 @@
 a bouncing ball
  */
 
-class Ball{
-  
-  int SPEED = 10
-  int SIZE = 16
+class Ball {
+
+  int SPEED = 10;
+  int SIZE = 16;
 
   int x;
   int y;
- 
+
   //create a variable for velocity
   int vx;
-  int vy; 
-  
-  Ball(int _x,int_y) {
+  int vy;
+
+  char rightKey;
+  char leftKey;
+
+  Ball(int _x, int _y, char _rigthKey, char _lefkey ) {
     x = _x;
     y = _y;
-   vx = SPEED;
-   VY = SPEED;
+    vx = SPEED;
+    vy = SPEED;
+
+    rightKey = _rightKey;
+    leftKey = _leftKey;
   }
-  
+
   void update() {
-    
+
     x += vx;
     y += vy;
-    
   }
-  
-  void collide (Paddles paddles, Paddle otherPaddles) {
-  }
-  
-  void display() {
-    
-    noStroke();
-    fill(ballColor)
-   
 
-  char leftkey='k' ;
-  char rightkey='l';
+  //void collide (Paddles paddles, Paddle otherPaddles) {
+  //}
+
+  void display() {
+
+    noStroke();
+    fill(255);
+  }
 
   void setup() {
     size(400, 700);
@@ -56,28 +58,39 @@ class Ball{
     fill(255);
 
     //draw the circle in it's current position
-    ellipse(ballX, ballY, h, h);
+    ellipse(x, y, SIZE, SIZE);
 
     //add a little gravity to the speed
     //speedY = speedY + .7;  
 
     //add speed to the ball's
-    ballY = ballY + speedY; 
+    x = y + vy; 
 
 
-    if (ballY > height - h) {
+    if (y > height - SIZE) {
       // set the position to be on the floor
-      ballY = height - h;
+      y = height - SIZE;
       // and make the y speed 90% of what it was,
       // but in the opposite direction
-      speedY = speedY * -0.9;
+      vy = -vy ;
 
       //switch the direction
       //speedY = speedY;
-    } else if (ballY <= 0) { 
+    } else if (y <= 0) { 
       // if the ball hits the top,
       // make it bounce off
-      speedY = -speedY;
+      vy = -vy;
+    }
+  }
+
+  void keyPressed() {
+
+    if (key == rightKey) {
+
+      vx = SPEED;
+    } else if (key == leftKey) {
+
+      vx = -SPEED;
     }
   }
 }
