@@ -6,6 +6,8 @@ class Paddles {
   float vy = .6;
   float vx;
 
+  boolean onPaddles = false;
+
   int size;
 
   int paddleHeight = 10;
@@ -33,5 +35,17 @@ class Paddles {
     noStroke();
     fill (paddlesColor);
     rect(x, y, paddleLength, paddleHeight);
+  }
+
+  boolean collidesWithBall (Ball ball) {
+
+    if ( ball.x > x && ball.x < x + paddleWidth 
+      && ball.y + (ball.ballSize/2) > y && ball.y - (ball.ballSize/2) < y + paddleHeight)
+    {
+
+      return true ;
+    }
+
+    return false;
   }
 }
