@@ -4,22 +4,22 @@ a bouncing ball
 
 class Ball {
 
-  int SPEED = 5;
+  //for the jump
+  
+  float yspeed;
+  float speed = 3;
+  
+  
   int SIZE = 25;
 
   int x;
   int y;
 
-  //create a variable for velocity
-  int vx;
-  int vy;
-
 
   Ball(int _x, int _y ) {
     x = _x;
     y = _y;
-    vx = 0;
-    vy = SPEED;
+  
   }
 
   void update() {
@@ -69,5 +69,34 @@ class Ball {
     } else if (keyCode == LEFT) {
       vx = -SPEED;
     }
+    if (keyCode == ' ') {
+      vy = SPEED;
+    }
+
+    if (keyCode ==LEFT)
+    {
+      keys[0] =true;
+    }
+    if (keyCode ==RIGHT)
+    {
+      keys[1] =true;
+    }
+    //for jump
+    if (key == ' ')
+    {
+      m.goJump();
+    }
   }
+}
+
+void keyReleased()
+{
+  if (keyCode ==LEFT)
+    {
+      keys[0] =false;
+    }
+    if (keyCode ==RIGHT)
+    {
+      keys[1] =false;
+    }
 }
