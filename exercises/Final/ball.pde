@@ -6,51 +6,26 @@ class Ball {
 
   //for the jump
   color ballColor;
-  float yspeed;
+  float ySpeed;
   float speed = 3;
-  
+
 
   int x;
   int y;
   int ballSize;
 
-boolean jump = false;
+  boolean jump = false;
+  
+  //the keys function enables me to press two keys at the same time. if i want to jump and also 
+  //move left or right i will be able to do that. 
+  boolean[] keys = {false, false};
 
   Ball(int _x, int _y, int _ballSize, color _ballColor ) {
-    
+
     ballSize = _ballSize;
     ballColor = _ballColor;
     x = _x;
     y = _y;
-    
-  
-  }
-
-  void update() {
-
-    x += vx;
-    y += vy;
-
-    if (y > height - SIZE) {
-      // set the position to be on the floor
-      y = height - SIZE;
-      // and make the y speed 90% of what it was,
-      // but in the opposite direction
-      vy = -vy ;
-
-      //switch the direction
-      //speedY = speedY;
-    } else if (y <= 350) { 
-      // if the ball hits the top,
-      // make it bounce off
-      vy = -vy;
-    }
-
-    if ( x< 0) {
-      x = x + width;
-    } else if ( x> width) {
-      x = x-width;
-    }
   }
 
   //void collide (Paddles paddles, Paddle otherPaddles) {
@@ -61,21 +36,32 @@ boolean jump = false;
     noStroke();
     fill(255);
     //draw the circle in it's current position
-    ellipse(x, y, SIZE, SIZE);
+    ellipse(x, y, ballSize, ballSize);
+  }
+
+  void jump() {
+
+    if ( jump == false && falling == false) {
+      jump = true;
+      ySpeed = -15;
+    }
   }
 
 
+  void update() {
+
+    if (keys[0] ==true)
+    {
+      x-=speed;
+    }
+    if (keys[1] ==true)
+    {
+      x+=speed;
+    }
+  }
+
 
   void keyPressed() {
-
-    if (keyCode == RIGHT) {
-      vx = SPEED;
-    } else if (keyCode == LEFT) {
-      vx = -SPEED;
-    }
-    if (keyCode == ' ') {
-      vy = SPEED;
-    }
 
     if (keyCode ==LEFT)
     {
@@ -88,14 +74,13 @@ boolean jump = false;
     //for jump
     if (key == ' ')
     {
-      m.goJump();
+      ball.jump();
     }
   }
-}
 
-void keyReleased()
-{
-  if (keyCode ==LEFT)
+  void keyReleased()
+  {
+    if (keyCode ==LEFT)
     {
       keys[0] =false;
     }
@@ -103,4 +88,5 @@ void keyReleased()
     {
       keys[1] =false;
     }
+  }
 }
