@@ -34,6 +34,7 @@ class Paddles {
   void display() {
 
     noStroke();
+     rectMode(CORNER);
     fill (paddlesColor);
     rect(x, y, paddleLength, paddleHeight);
   }
@@ -41,7 +42,7 @@ class Paddles {
   boolean collidesWithBall (Ball ball) {
 
     if ( ball.x > x && ball.x < x + paddleLength
-      && ball.y + (ball.ballSize/2) > y && ball.y - (ball.ballSize/2) < y + paddleHeight)
+      && ball.y-(ball.ballSize/2) > y && ball.y-(ball.ballSize/2) < y + 5)
     {
 
       return true ;

@@ -60,11 +60,12 @@ class Ball {
     }
 
     if (x < 0) {
-      x = x + width; 
-      {
-      }
+      x = x + width;
+    } else if ( x> width) {
+      x = x-width;
     }
   }
+
 
 
   void keyPressed() {

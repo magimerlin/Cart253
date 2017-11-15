@@ -17,14 +17,14 @@ float floorY = 600;
 void setup() {
 
   size (400, 700);
-  ball = new Ball(width/2, height/2,25,255);
+  ball = new Ball(width/2, height/2,10,255);
 
   paddles = new Paddles [1000];
 
   float _yTemp = -20;
   float _yStart = -3;
 
-  for (int i=0; i<100; i++) {
+  for (int i=0; i<1000; i++) {
 
     if (i%5 == 0 && i!=0) {
    
@@ -62,7 +62,7 @@ void draw() {
     ball.y+=ball.ySpeed;
   }
 
-  for (int i=0; i<100; i++) {
+  for (int i=0; i<1000; i++) {
 
     paddles[i].update();
     paddles[i].display();
@@ -76,7 +76,7 @@ void draw() {
       // on a platform
       paddles[i].onPaddles =true;
 
-      ball.y= paddles[i].y-5;
+      ball.y= (int)paddles[i].y-5;
       ball.ySpeed =0;
       ball.jump=false;
       falling =false;
@@ -102,6 +102,17 @@ void draw() {
           break;
         }
       }
+    }
+  }
+   // if we are falling then go down
+  if (falling ==true)
+  {
+    ball.ySpeed +=1;
+    ball.y+=ball.ySpeed;
+    // stop at ground
+    if (ball.y>floorY-50)
+    {
+      falling =false;
     }
   }
   
