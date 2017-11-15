@@ -6,6 +6,7 @@ class Paddles {
   float vy = .6;
   float vx;
 
+
   boolean onPaddles = false;
 
   int size;
@@ -39,7 +40,7 @@ class Paddles {
 
   boolean collidesWithBall (Ball ball) {
 
-    if ( ball.x > x && ball.x < x + paddleWidth 
+    if ( ball.x > x && ball.x < x + paddleLength
       && ball.y + (ball.ballSize/2) > y && ball.y - (ball.ballSize/2) < y + paddleHeight)
     {
 

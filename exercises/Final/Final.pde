@@ -67,6 +67,44 @@ void draw() {
     paddles[i].update();
     paddles[i].display();
   }
+  for (int i = 0; i< paddles.length; i++)
+  {
+
+    // if there is collision
+    if (paddles[i].collidesWithBall(ball))
+    {
+      // on a platform
+      paddles[i].onPaddles =true;
+
+      ball.y= paddles[i].y-5;
+      ball.ySpeed =0;
+      ball.jump=false;
+      falling =false;
+      break;
+    }
+  }
+  // next check if falling
+  if (ball.jump ==false)
+  {
+    for (int i = 0; i< paddles.length; i++)
+    {
+      //if we are on the platform
+      if (paddles[i].onPaddles  ==true)
+      {
+        println("are on a platform");
+
+        // we want to test if we should falll
+        if (paddles[i].collidesWithBall(ball) ==false)
+        {
+          println("falling");
+          paddles[i].onPaddles =false;
+          falling =true;
+          break;
+        }
+      }
+    }
+  }
+  
 }
 
 

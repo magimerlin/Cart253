@@ -60,50 +60,11 @@ class Ball {
     }
 
     if (x < 0) {
-      x = x + width;
-    } else if (x > width) {
-      x = x - width;
-    }
-    
-    for (int i = 0; i< platforms.length; i++)
-  {
-
-    // if there is collision
-    if (paddles[i].collidesWithBallr(m))
-    {
-      // on a platform
-      paddles[i].onPaddles =true;
-
-      ball.y=platforms[i].y-5;
-      ball.ySpeed =0;
-      ball.jump=false;
-      falling =false;
-      break;
-    }
-  }
-  // next check if falling
-  if (ball.jump ==false)
-  {
-    for (int i = 0; i< platforms.length; i++)
-    {
-      //if we are on the platform
-      if (platforms[i].onPlatform  ==true)
+      x = x + width; 
       {
-        println("are on a platform");
-
-        // we want to test if we should falll
-        if (platforms[i].collidesWithMover(m) ==false)
-        {
-          println("falling");
-          platforms[i].onPlatform =false;
-          falling =true;
-          break;
-        }
       }
     }
   }
-
-
 
 
   void keyPressed() {
