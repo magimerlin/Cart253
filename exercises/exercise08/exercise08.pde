@@ -22,8 +22,3 @@ void keyPressed() {
   ball.keyPressed();
 
 }
-
-void keyReleased(){
-
-  ball.keyReleased();
-}
