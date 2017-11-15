@@ -17,7 +17,7 @@ float floorY = 600;
 void setup() {
 
   size (400, 700);
-  ball = new Ball(width/2, height/2);
+  ball = new Ball(width/2, height/2,25,255);
 
   paddles = new Paddles [1000];
 

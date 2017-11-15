@@ -5,20 +5,24 @@ a bouncing ball
 class Ball {
 
   //for the jump
-  
+  color ballColor;
   float yspeed;
   float speed = 3;
   
-  
-  int SIZE = 25;
 
   int x;
   int y;
+  int ballSize;
 
+boolean jump = false;
 
-  Ball(int _x, int _y ) {
+  Ball(int _x, int _y, int _ballSize, color _ballColor ) {
+    
+    ballSize = _ballSize;
+    ballColor = _ballColor;
     x = _x;
     y = _y;
+    
   
   }
 
