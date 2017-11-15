@@ -15,7 +15,7 @@ class Ball {
   int ballSize;
 
   boolean jump = false;
-  
+
   //the keys function enables me to press two keys at the same time. if i want to jump and also 
   //move left or right i will be able to do that. 
   boolean[] keys = {false, false};
@@ -58,35 +58,43 @@ class Ball {
     {
       x+=speed;
     }
-  }
 
-
-  void keyPressed() {
-
-    if (keyCode ==LEFT)
-    {
-      keys[0] =true;
-    }
-    if (keyCode ==RIGHT)
-    {
-      keys[1] =true;
-    }
-    //for jump
-    if (key == ' ')
-    {
-      ball.jump();
+    if (x < 0) {
+      x = x + width;
+    } else if (x > width) {
+      x = x - width;
     }
   }
+}
 
-  void keyReleased()
+
+
+void keyPressed() {
+
+  if (keyCode ==LEFT)
   {
-    if (keyCode ==LEFT)
-    {
-      keys[0] =false;
-    }
-    if (keyCode ==RIGHT)
-    {
-      keys[1] =false;
-    }
+    keys[0] =true;
   }
+  if (keyCode ==RIGHT)
+  {
+    keys[1] =true;
+  }
+  //for jump
+  if (key == ' ')
+  {
+    ball.jump();
+  }
+}
+
+void keyReleased()
+{
+  if (keyCode ==LEFT)
+  {
+    keys[0] =false;
+  }
+  if (keyCode ==RIGHT)
+  {
+    keys[1] =false;
+  }
+}
 }
