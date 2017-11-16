@@ -1,13 +1,10 @@
 
 class Paddles {
 
-  float x;
-  float y;
-  float vy = .6;
+  int x;
+  int y;
+  int vy = 1;
   float vx;
-
-
-  boolean onPaddles = false;
 
   int size;
 
@@ -20,7 +17,7 @@ class Paddles {
   color paddlesColor = color(255);
 
 
-  Paddles( float X, float Y) {
+  Paddles( int X, int Y) {
 
     x = X;
     y = Y;
@@ -34,17 +31,19 @@ class Paddles {
   void display() {
 
     noStroke();
-     rectMode(CORNER);
+    rectMode(CORNER);
     fill (paddlesColor);
     rect(x, y, paddleLength, paddleHeight);
   }
 
   boolean collidesWithBall (Ball ball) {
 
-    if ( ball.x > x && ball.x < x + paddleLength
-      && ball.y-(ball.ballSize/2) > y && ball.y-(ball.ballSize/2) < y + 5)
-    {
+    boolean fromRightLeft = ball.x +(ball.ballSize/2)  >= x && (ball.x-(ball.ballSize/2))<= (x + paddleLength);
+    boolean fromTop = ball.y+(ball.ballSize/2)>= y && ball.y+(ball.ballSize/2)<(y+5)+ball.ySpeed;
 
+    if (fromRightLeft  && fromTop)
+    {
+      println("collision");
       return true ;
     }
 

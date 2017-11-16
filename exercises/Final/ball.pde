@@ -8,6 +8,7 @@ class Ball {
   color ballColor;
   float ySpeed;
   float speed = 3;
+ int onAPaddle =-1;
 
 
   int x;
@@ -34,7 +35,7 @@ class Ball {
   void display() {
 
     noStroke();
-    fill(255);
+    fill(ballColor);
     //draw the circle in it's current position
     ellipse(x, y, ballSize, ballSize);
   }

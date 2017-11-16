@@ -10,6 +10,7 @@ int currentPos;
 
 boolean falling = false;
 float floorY = 600;
+boolean gameOver = false;
 
 
 
@@ -17,25 +18,23 @@ float floorY = 600;
 void setup() {
 
   size (400, 700);
-  ball = new Ball(width/2, height/2,10,255);
+  ball = new Ball(width/2, height/2, 20, 255);
 
   paddles = new Paddles [1000];
 
   float _yTemp = -20;
   float _yStart = -3;
 
-  for (int i=0; i<1000; i++) {
+
+
+  for (int i=0; i< paddles.length; i++) {
 
     if (i%5 == 0 && i!=0) {
-   
-    // println(_yTemp);
+
       _yStart = _yStart - 200;
-       _yTemp = _yStart - 50;
-         println(i+" "+_yTemp);
-      
+      _yTemp = _yStart - 50;
     }
-     paddles[i] = new Paddles (random(width), random(_yStart-200,_yStart));
-    //paddles[i] = new Paddles (random(width), _yTemp);
+    paddles[i] = new Paddles ((int)random(width), (int)random(_yTemp, _yStart));
   }
 }
 
@@ -43,89 +42,163 @@ void setup() {
 void draw() {
 
   background(0);
-  ball.update();
-  ball.display(); 
-  
-  //if we are jumping
-  if (ball.jump ==true)
+ 
+  // if game not over
+  if (gameOver ==false)
   {
-    falling =false;
-    // increment the ySpeed
-    ball.ySpeed +=1;
+    //update the ball
+    ball.update();
+    ball.display(); 
 
-    /* reset ... 
-     for (int i=0; i< platforms.length; i++)
-     {
-     platforms[i].onPlatform =false;
-     }*/
-    // change speed for jump
-    ball.y+=ball.ySpeed;
-  }
-
-  for (int i=0; i<1000; i++) {
-
-    paddles[i].update();
-    paddles[i].display();
-  }
-  for (int i = 0; i< paddles.length; i++)
-  {
-
-    // if there is collision
-    if (paddles[i].collidesWithBall(ball))
+    //if we are jumping
+    if (ball.jump ==true)
     {
-      // on a platform
-      paddles[i].onPaddles =true;
-
-      ball.y= (int)paddles[i].y-5;
-      ball.ySpeed =0;
-      ball.jump=false;
-      falling =false;
-      break;
-    }
-  }
-  // next check if falling
-  if (ball.jump ==false)
-  {
-    for (int i = 0; i< paddles.length; i++)
-    {
-      //if we are on the platform
-      if (paddles[i].onPaddles  ==true)
+      // if we are moving up
+      if (ball.ySpeed <=0)
       {
-        println("are on a platform");
+        ball.ySpeed +=1;
+        // change speed for jump
+        ball.y+=ball.ySpeed;
+      }
+      // if we are mving down
+      if (ball.ySpeed >0)
+      {
+        falling =true;
+      }
+    }
 
-        // we want to test if we should falll
-        if (paddles[i].collidesWithBall(ball) ==false)
+
+
+    // test each platform and see if we are on one IFF we are not on one
+    if (ball.onAPaddle ==-1)
+    {
+      for (int i = 0; i< paddles.length; i++)
+      {
+
+        // if there is collision 
+        if (paddles[i].collidesWithBall(ball))
         {
-          println("falling");
-          paddles[i].onPaddles =false;
-          falling =true;
+          println("collide while on paddle");
+          // on a platform - which one  == i
+          ball.onAPaddle =i;
+          //set the new y pos for the ball
+          ball.y= paddles[i].y - (ball.ballSize/2);
+          //test
+          //ball.ballColor = color(0, 0, 255);
+          ball.ySpeed =0;
+          ball.jump=false;
+          falling =false;
           break;
         }
       }
     }
-  }
-   // if we are falling then go down
-  if (falling ==true)
-  {
-    ball.ySpeed +=1;
-    ball.y+=ball.ySpeed;
-    // stop at ground
-    if (ball.y>floorY-50)
+    // either stay on the paddle or if you move fall. .. 
+    if (ball.onAPaddle !=-1)
     {
-      falling =false;
+
+      int paddleIndex= ball.onAPaddle;
+      // println("paddle index:: "+paddleIndex);
+      // if the ball is STILL on the platform
+      if (paddles[paddleIndex].collidesWithBall(ball) )
+      {
+        // println("on a paddle");
+
+        ball.y= paddles[paddleIndex].y-(ball.ballSize/2)+paddles[paddleIndex].vy;
+        ball.ySpeed =0;
+        //falling =false;
+        //test
+        // ball.ballColor = color(0, 0, 255);
+        //ball.jump=false;
+      } 
+      // means we are no longer on a paddle
+      else
+      {
+        println("not on a paddle");
+        ball.onAPaddle=-1;
+        falling =true;
+      }
+    }
+
+
+    // case for falling 
+    if (falling ==true && ball.onAPaddle==-1)
+    {
+      ball.ySpeed +=1;
+      ball.y+= ball.ySpeed;
+      //test
+      // ball.ballColor = color(255, 0, 0);
+    }
+
+    //go through each paddle and update and display
+
+    for (int i=0; i<paddles.length; i++) {
+
+      paddles[i].update();
+
+      paddles[i].display();
+    }
+
+    //test for game over
+    if (ball.y-(ball.ballSize/2)>height)
+    {
+      gameOver =true;
+      ball.ySpeed =0;
     }
   }
-  
+
+  //gameover
+  else
+  {
+    background(0);
+    fill(255);
+    textSize(24);
+    text("Game Over", width/2, height/2);
+    //println("gameOver");
+  }
+}
+
+//reset the game
+void reset()
+{
+  gameOver =false;
+  falling = false;
+  ball = new Ball(width/2, height/2, 20, 255);
+
+  paddles = new Paddles [1000];
+
+  float _yTemp = -20;
+  float _yStart = -3;
+
+
+
+  for (int i=0; i< paddles.length; i++) {
+
+    if (i%5 == 0 && i!=0) {
+
+      // println(_yTemp);
+      _yStart = _yStart - 200;
+      _yTemp = _yStart - 50;
+      // println(i+" "+_yTemp);
+    }
+    paddles[i] = new Paddles ((int)random(width), (int)random(_yStart-200, _yStart));
+  }
 }
 
 
 void keyPressed() {
-
-  ball.keyPressed();
+  if (gameOver)
+  {
+    if (key == ' ')
+    {
+      reset();
+    }
+  } else
+  {
+    ball.keyPressed();
+  }
 }
 
 void keyReleased() {
-  
-  ball.keyReleased();
 
+  ball.keyReleased();
 }
