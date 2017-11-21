@@ -18,31 +18,14 @@ boolean gameOver = false;
 void setup() {
 
   size (400, 700);
-  ball = new Ball(width/2, height/2, 20, 255);
-
-  paddles = new Paddles [1000];
-
-  float _yTemp = -20;
-  float _yStart = -3;
-
-
-
-  for (int i=0; i< paddles.length; i++) {
-
-    if (i%5 == 0 && i!=0) {
-
-      _yStart = _yStart - 200;
-      _yTemp = _yStart - 50;
-    }
-    paddles[i] = new Paddles ((int)random(width), (int)random(_yTemp, _yStart));
-  }
+  reset();
 }
 
 
 void draw() {
 
   background(0);
- 
+
   // if game not over
   if (gameOver ==false)
   {
@@ -166,7 +149,7 @@ void reset()
 
   paddles = new Paddles [1000];
 
-  float _yTemp = -20;
+  //float _yTemp = -20;
   float _yStart = -3;
 
 
@@ -174,13 +157,9 @@ void reset()
   for (int i=0; i< paddles.length; i++) {
 
     if (i%5 == 0 && i!=0) {
-
-      // println(_yTemp);
-      _yStart = _yStart - 200;
-      _yTemp = _yStart - 50;
-      // println(i+" "+_yTemp);
+      _yStart = _yStart - 100;
     }
-    paddles[i] = new Paddles ((int)random(width), (int)random(_yStart-200, _yStart));
+    paddles[i] = new Paddles ((int)random(width), (int)random(_yStart-100, _yStart));
   }
 }
 

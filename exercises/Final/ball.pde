@@ -44,7 +44,7 @@ class Ball {
 
     if ( jump == false && falling == false) {
       jump = true;
-      ySpeed = -15;
+      ySpeed = -17;
     }
   }
 
