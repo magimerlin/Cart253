@@ -25,6 +25,13 @@ void setup() {
 void draw() {
 
   background(0);
+  
+  text(millis()/1000, 50,100);
+  
+  //RESTART TIMER EVERYTIME PERSON DIES 
+  //if (gameOver == true) {
+ 
+  //}
 
   // if game not over
   if (gameOver ==false)
