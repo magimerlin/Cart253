@@ -8,11 +8,11 @@ class Ball {
   color ballColor;
   float ySpeed;
   float speed = 3;
- int onAPaddle =-1;
+  int onAPaddle = -1;
 
 
-  int x;
-  int y;
+  float x;
+  float y;
   int ballSize;
 
   boolean jump = false;
@@ -69,32 +69,34 @@ class Ball {
 
 
 
-  void keyPressed() {
 
-    if (keyCode ==LEFT)
-    {
-      keys[0] =true;
+
+      void keyPressed() {
+
+      if (keyCode ==LEFT)
+      {
+        keys[0] =true;
+      }
+      if (keyCode ==RIGHT)
+      {
+        keys[1] =true;
+      }
+      //for jump
+      if (key == ' ')
+      {
+        ball.jump();
+      }
     }
-    if (keyCode ==RIGHT)
+
+    void keyReleased()
     {
-      keys[1] =true;
-    }
-    //for jump
-    if (key == ' ')
-    {
-      ball.jump();
+      if (keyCode ==LEFT)
+      {
+        keys[0] =false;
+      }
+      if (keyCode ==RIGHT)
+      {
+        keys[1] =false;
+      }
     }
   }
-
-  void keyReleased()
-  {
-    if (keyCode ==LEFT)
-    {
-      keys[0] =false;
-    }
-    if (keyCode ==RIGHT)
-    {
-      keys[1] =false;
-    }
-  }
-}

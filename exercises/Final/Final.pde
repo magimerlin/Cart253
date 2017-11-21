@@ -9,7 +9,7 @@ int halfScreenn;
 int currentPos;
 
 boolean falling = false;
-float floorY = 600;
+float floorY = 600; //WHAT IS THIS??
 boolean gameOver = false;
 
 
@@ -33,6 +33,15 @@ void draw() {
     ball.update();
     ball.display(); 
 
+    if (ball.y < 0) {
+      for (int i = 0; i< paddles.length; i++){
+      paddles[i].vy += 0.1;
+      }
+    }
+    
+
+
+
     //if we are jumping
     if (ball.jump ==true)
     {
@@ -52,7 +61,7 @@ void draw() {
 
 
 
-    // test each platform and see if we are on one IFF we are not on one
+    // test each platform and see if we are on one IF we are not on one
     if (ball.onAPaddle ==-1)
     {
       for (int i = 0; i< paddles.length; i++)
@@ -145,7 +154,7 @@ void reset()
 {
   gameOver =false;
   falling = false;
-  ball = new Ball(width/2, height/2, 20, 255);
+  ball = new Ball(width/2, 680, 20, 255);
 
   paddles = new Paddles [1000];
 
@@ -157,9 +166,9 @@ void reset()
   for (int i=0; i< paddles.length; i++) {
 
     if (i%5 == 0 && i!=0) {
-      _yStart = _yStart - 100;
+      _yStart = _yStart - 100; //this is the amount of space seperating the paddles from each other on the y axis.
     }
-    paddles[i] = new Paddles ((int)random(width), (int)random(_yStart-100, _yStart));
+    paddles[i] = new Paddles ((int)random(width), (int)random(_yStart-300, _yStart)); //the amount of space between the paddles on the x axis.
   }
 }
 

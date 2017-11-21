@@ -3,7 +3,7 @@ class Paddles {
 
   int x;
   int y;
-  int vy = 1;
+  float vy = 1;
   float vx;
 
   int size;
