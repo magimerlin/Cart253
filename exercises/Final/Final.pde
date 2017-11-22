@@ -3,10 +3,6 @@ Ball ball;
 Paddles[] paddles;
 Menu menu;
 
-
-
-
-
 color backgroundColor = color(0);
 int halfScreenn;
 int currentPos;
@@ -57,7 +53,7 @@ void draw() {
   {
     background(0);
     fill(255);
-    textSize(24);
+    textSize(55);
     textAlign(CENTER);
     text("YOU LIVED FOR " + recordTime + " SECONDS!", width/2, height/2);
     //println("gameOver");
@@ -66,7 +62,12 @@ void draw() {
 
 
 void handleGame() {
+   fill(255, 0, 0);
+    rect( 30,69,40, 40);
+    fill(255);
   text((millis() - startTime)/1000, 50, 100);
+    
+   
 
   //text(millis()/1000, 50, 100);
   //update the ball
