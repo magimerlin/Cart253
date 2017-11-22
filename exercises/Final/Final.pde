@@ -13,6 +13,7 @@ boolean falling = false;
 float floorY = 600; //WHAT IS THIS??
 boolean gameOver = false;
 boolean showMenu =true;
+PFont fontBold;
 
 
 void setup() {
@@ -20,6 +21,7 @@ void setup() {
   size (400, 700);
   reset();
   menu = new Menu();
+  fontBold = createFont("Amatic-Bold.ttf", 32);
 }
 
 
@@ -62,12 +64,14 @@ void draw() {
 
 
 void handleGame() {
-   fill(255, 0, 0);
-    rect( 30,69,40, 40);
-    fill(255);
+  fill(255, 0, 0);
+  rect( 30, 69, 40, 40);
+  fill(255);
+  textSize(32);
+  textFont(fontBold);
   text((millis() - startTime)/1000, 50, 100);
-    
-   
+
+
 
   //text(millis()/1000, 50, 100);
   //update the ball
@@ -84,7 +88,7 @@ void handleGame() {
 
 
 
- 
+
   //if we are jumping
   if (ball.jump ==true)
   {
@@ -100,7 +104,7 @@ void handleGame() {
     {
       falling =true;
     }
- }
+  }
 
 
   // test each platform and see if we are on one IF we are not on one
