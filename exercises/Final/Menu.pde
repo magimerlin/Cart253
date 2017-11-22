@@ -26,7 +26,7 @@ class Menu {
       rect(x,y,50,30);
     fill(255);
     
-    text(button, x, y+20); 
+    text(button, x+4, y+20); 
   
   }
   
@@ -36,7 +36,7 @@ class Menu {
     if(mouseX>x && mouseX<x+50 && mouseY>y && mouseY<y+30)
     {
       showMenu =false;
-      
+      startTime = millis();
     }
   }
 }
