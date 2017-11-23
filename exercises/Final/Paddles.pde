@@ -2,7 +2,7 @@
 class Paddles {
 
   int x;
-  int y;
+  float y;
   float vy = 1;
   float vx;
 
@@ -17,7 +17,7 @@ class Paddles {
   color paddlesColor = color(255);
 
 
-  Paddles( int X, int Y) {
+  Paddles( int X, float Y) {
 
     x = X;
     y = Y;

@@ -14,6 +14,7 @@ float floorY = 600; //WHAT IS THIS??
 boolean gameOver = false;
 boolean showMenu =true;
 PFont fontBold;
+PowerUp powerup;
 
 
 void setup() {
@@ -22,6 +23,7 @@ void setup() {
   reset();
   menu = new Menu();
   fontBold = createFont("Amatic-Bold.ttf", 32);
+  powerup = new PowerUp (random(20, width-2), -20 );
 }
 
 
@@ -57,7 +59,7 @@ void draw() {
     fill(255);
     textSize(55);
     textAlign(CENTER);
-    text("YOU LIVED FOR " + recordTime + " SECONDS!", width/2, height/2);
+    text("YOU LIVED FOR " + recordTime + " SECONDS...", width/2, height/2);
     //println("gameOver");
   }
 }
@@ -71,7 +73,15 @@ void handleGame() {
   textFont(fontBold);
   text((millis() - startTime)/1000, 50, 100);
 
+  powerup.update();
+  powerup.display();
+  if (powerup.collidesWithBall(ball) ==true)
+  {
+    for (int i=0; i<paddles.length; i++) {
 
+      paddles[i].vy = paddles[i].vy - .01;
+    }
+  }
 
   //text(millis()/1000, 50, 100);
   //update the ball
@@ -105,6 +115,8 @@ void handleGame() {
       falling =true;
     }
   }
+
+
 
 
   // test each platform and see if we are on one IF we are not on one
