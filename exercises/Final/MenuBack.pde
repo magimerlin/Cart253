@@ -1,3 +1,5 @@
+//CREDITS: sketch taken from processing.org example sketches.
+
 class LSystem 
 {
   int steps = 0;
