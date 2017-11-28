@@ -3,12 +3,15 @@ a bouncing ball
  */
 
 class Ball {
+  
+  SoundFile jumpSound;
 
   //for the jump
   color ballColor;
   float ySpeed;
   float speed = 3;
   int onAPaddle = -1;
+ 
 
 
   float x;
@@ -21,8 +24,9 @@ class Ball {
   //move left or right i will be able to do that. 
   boolean[] keys = {false, false};
 
-  Ball(int _x, int _y, int _ballSize, color _ballColor ) {
+  Ball(int _x, int _y, int _ballSize, color _ballColor, PApplet processing ) {
 
+    jumpSound = new SoundFile(processing, "boop.wav");
     ballSize = _ballSize;
     ballColor = _ballColor;
     x = _x;
@@ -46,6 +50,9 @@ class Ball {
       jump = true;
       ySpeed = -17;
     }
+    
+     jumpSound.play();
+
   }
 
 
@@ -67,10 +74,6 @@ class Ball {
     }
   }
 
-
-
-
-
       void keyPressed() {
 
       if (keyCode ==LEFT)
@@ -84,7 +87,8 @@ class Ball {
       //for jump
       if (key == ' ')
       {
-        ball.jump();
+        jump();
+        println("boop");
       }
     }
 

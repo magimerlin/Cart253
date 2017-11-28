@@ -45,19 +45,18 @@ class PowerUp {
       y+= vy;
       if (x> width) x=width-20;
       if (x<0)x = 20;
-      
-      if (y > height){
+
+      if (y > height) {
         y  = -50;
-        x = random(20,width-20);
-         startPowerUp = false;
-         startTimer = millis();
-         timePassed = 0;
+        x = random(20, width-20);
+        startPowerUp = false;
+        startTimer = millis();
+        timePassed = 0;
       }
     }
   }
 
   boolean collidesWithBall (Ball ball) {
-
     boolean fromRightLeft = ball.x +(ball.ballSize/2)  >= x && (ball.x-(ball.ballSize/2))<= (x + powerUpSize);
     boolean fromTop = ball.y+(ball.ballSize/2)>= y && ball.y+(ball.ballSize/2)<(y+powerUpSize);
 

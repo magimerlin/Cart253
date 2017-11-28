@@ -12,7 +12,6 @@ class Paddles {
   int paddleLength = 50;
 
   color fill = (255);
-  //boolean ballHitsPaddles = false; 
 
   color paddlesColor = color(255);
 
@@ -25,6 +24,7 @@ class Paddles {
 
   void update() {
 
+    //the only direction the paddles are able to move is along the y axis... for now?
     y += vy;
   }
 
@@ -36,10 +36,11 @@ class Paddles {
     rect(x, y, paddleLength, paddleHeight);
   }
 
+//these booleans 
+//
   boolean collidesWithBall (Ball ball) {
-
     boolean fromRightLeft = ball.x +(ball.ballSize/2)  >= x && (ball.x-(ball.ballSize/2))<= (x + paddleLength);
-    boolean fromTop = ball.y+(ball.ballSize/2)>= y && ball.y+(ball.ballSize/2)<(y+5)+ball.ySpeed;
+      boolean fromTop = ball.y+(ball.ballSize/2)>= y && ball.y+(ball.ballSize/2)<(y+5)+ball.ySpeed;
 
     if (fromRightLeft  && fromTop)
     {

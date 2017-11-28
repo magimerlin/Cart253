@@ -1,7 +1,10 @@
 
+import processing.sound.*;
+
 Ball ball;
 Paddles[] paddles;
 Menu menu;
+SoundFile jumpSound;
 
 color backgroundColor = color(0);
 int halfScreenn;
@@ -21,7 +24,7 @@ void setup() {
 
   size (400, 700);
   reset();
-  menu = new Menu();
+  menu = new Menu(this);
   fontBold = createFont("Amatic-Bold.ttf", 32);
   powerup = new PowerUp (random(20, width-2), -20 );
 }
@@ -41,10 +44,6 @@ void draw() {
     {
       menu.display();
     } 
-
-
-
-
     // game is playing
     else
     {
@@ -203,7 +202,7 @@ void reset()
 {
   gameOver =false;
   falling = false;
-  ball = new Ball(width/2, 680, 20, 255);
+  ball = new Ball(width/2, 680, 20, 255,this);
   startTime = millis();
 
   paddles = new Paddles [1000];
