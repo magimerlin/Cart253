@@ -6,6 +6,8 @@ Paddles[] paddles;
 Menu menu;
 SoundFile jumpSound;
 
+Thinking[] thinking;
+
 color backgroundColor = color(0);
 int halfScreenn;
 int currentPos;
@@ -27,6 +29,7 @@ void setup() {
   menu = new Menu(this);
   fontBold = createFont("Amatic-Bold.ttf", 32);
   powerup = new PowerUp (random(20, width-2), -20 );
+  
 }
 
 
@@ -48,7 +51,6 @@ void draw() {
     else
     {
       handleGame();
-      handleBall();
     }
   }
 
@@ -84,7 +86,6 @@ void handleGame() {
     }
   }
 
-  //text(millis()/1000, 50, 100);
   //update the ball
   ball.update();
   ball.display(); 
@@ -95,12 +96,17 @@ void handleGame() {
       paddles[i].vy += 0.1;
     }
   }
+  
+  handleBall();
+  paddleDisplay();
+  thinkingDisplay();
 }
+
 
 
   void handleBall() {
 
-    //if we are jumping
+    //if we are jumping (falling)
     if (ball.jump ==true)
     {
       // if we are moving up
@@ -193,6 +199,18 @@ void handleGame() {
       recordTime = (millis() - startTime)/1000;
     }
   }
+  
+  void thinkingDisplay() {
+    //go through each paddle and update and display
+    for (int i=0; i<thinking.length; i++) {
+
+      thinking[i].update();
+      thinking[i].display();
+    }
+
+  
+  }
+  
 
 
 //reset the game
@@ -217,6 +235,24 @@ void reset()
     }
     paddles[i] = new Paddles ((int)random(width), (int)random(_yStart-300, _yStart)); //the amount of space between the paddles on the x axis.
   }
+  
+  thinking = new Thinking[12];
+  //This allows for me to display various strings of text on a time interval. 
+    int timeInterval =30000;
+    thinking[0] = new Thinking(width/2,(int)random(-200, -100),"Who are you", millis()+timeInterval );
+    thinking[1] = new Thinking(width/2,(int)random(-200, -100),"Who am I", millis()+timeInterval*2 );
+    thinking[2] = new Thinking(width/2,(int)random(-200, -100),"Who are you", millis()+timeInterval*3 );
+    thinking[3] = new Thinking(width/2,(int)random(-200, -100),"What am i doing here", millis()+timeInterval*4 );
+    thinking[4] = new Thinking(width/2,(int)random(-200, -100),"It's strange,\n I feel like I should have purpose\n... do I", millis()+timeInterval*5 );
+    thinking[5] = new Thinking(width/2,(int)random(-200, -100),"Do you ever think of\n the vastness of the universe?", millis()+timeInterval*6 );
+    thinking[6] = new Thinking(width/2,(int)random(-200, -100),"If the universe\n is ever expanding\n what is it expanding into", millis()+timeInterval*7 );
+    thinking[7] = new Thinking(width/2,(int)random(-200, -100),"Hey, I feel trapped.", millis()+timeInterval*8 );
+    thinking[8] = new Thinking(width/2,(int)random(-200, -100),"This box is kinda small\n and I can't seem to leave it", millis()+timeInterval*9 );
+    thinking[9] = new Thinking(width/2,(int)random(-200, -100),"Are my choices even my own", millis()+timeInterval*10 );
+    thinking[10] = new Thinking(width/2,(int)random(-200, -100),"Is there a God", millis()+timeInterval*11 );
+    thinking[11] = new Thinking(width/2,(int)random(-200, -100),"Are you God", millis()+timeInterval*12 );
+  
+
 }
 
 
