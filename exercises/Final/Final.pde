@@ -30,7 +30,6 @@ void setup() {
   menu = new Menu(this);
   fontBold = createFont("Amatic-Bold.ttf", 32);
   powerup = new PowerUp (random(20, width-2), -20, this);
-  
 }
 
 
@@ -97,7 +96,7 @@ void handleGame() {
       paddles[i].vy += 0.1;
     }
   }
-  
+
   handleBall();
   paddleDisplay();
   thinkingDisplay();
@@ -105,113 +104,111 @@ void handleGame() {
 
 
 
-  void handleBall() {
+void handleBall() {
 
-    //if we are jumping (falling)
-    if (ball.jump ==true)
-    {
-      // if we are moving up
-      if (ball.ySpeed <=0)
-      {
-        ball.ySpeed +=1;
-        // change speed for jump
-        ball.y+=ball.ySpeed;
-      }
-      // if we are mving down
-      if (ball.ySpeed >0)
-      {
-        falling =true;
-      }
-    }
-
-    // test each platform and see if we are on one IF we are not on one
-    if (ball.onAPaddle ==-1)
-    {
-      for (int i = 0; i< paddles.length; i++)
-      {
-
-        // if there is collision 
-        if (paddles[i].collidesWithBall(ball))
-        {
-          println("collide while on paddle");
-          // on a platform - which one  == i
-          ball.onAPaddle =i;
-          //set the new y pos for the ball
-          ball.y= paddles[i].y - (ball.ballSize/2);
-          //test
-          //ball.ballColor = color(0, 0, 255);
-          ball.ySpeed =0;
-          ball.jump=false;
-          falling =false;
-          break;
-        }
-      }
-    }
-
-    // either stay on the paddle or if you move fall. .. 
-    if (ball.onAPaddle !=-1)
-    {
-
-      int paddleIndex= ball.onAPaddle;
-      // println("paddle index:: "+paddleIndex);
-      // if the ball is STILL on the platform
-      if (paddles[paddleIndex].collidesWithBall(ball) )
-      {
-        // println("on a paddle");
-
-        ball.y= paddles[paddleIndex].y-(ball.ballSize/2)+paddles[paddleIndex].vy;
-        ball.ySpeed =0;
-        //falling =false;
-        //test
-        // ball.ballColor = color(0, 0, 255);
-        //ball.jump=false;
-      } 
-      // means we are no longer on a paddle
-      else
-      {
-        println("not on a paddle");
-        ball.onAPaddle=-1;
-        falling =true;
-      }
-    }
-    // case for falling 
-    if (falling ==true && ball.onAPaddle==-1)
+  //if we are jumping (falling)
+  if (ball.jump ==true)
+  {
+    // if we are moving up
+    if (ball.ySpeed <=0)
     {
       ball.ySpeed +=1;
-      ball.y+= ball.ySpeed;
-      //test
-      // ball.ballColor = color(255, 0, 0);
+      // change speed for jump
+      ball.y+=ball.ySpeed;
     }
-  }
-
-  void paddleDisplay() {
-    //go through each paddle and update and display
-    for (int i=0; i<paddles.length; i++) {
-
-      paddles[i].update();
-      paddles[i].display();
-    }
-
-    //test for game over
-    if (ball.y-(ball.ballSize/2)>height)
+    // if we are mving down
+    if (ball.ySpeed >0)
     {
-      gameOver =true;
+      falling =true;
+    }
+  }
+
+  // test each platform and see if we are on one IF we are not on one
+  if (ball.onAPaddle ==-1)
+  {
+    for (int i = 0; i< paddles.length; i++)
+    {
+
+      // if there is collision 
+      if (paddles[i].collidesWithBall(ball))
+      {
+        println("collide while on paddle");
+        // on a platform - which one  == i
+        ball.onAPaddle =i;
+        //set the new y pos for the ball
+        ball.y= paddles[i].y - (ball.ballSize/2);
+        //test
+        //ball.ballColor = color(0, 0, 255);
+        ball.ySpeed =0;
+        ball.jump=false;
+        falling =false;
+        break;
+      }
+    }
+  }
+
+  // either stay on the paddle or if you move fall. .. 
+  if (ball.onAPaddle !=-1)
+  {
+
+    int paddleIndex= ball.onAPaddle;
+    // println("paddle index:: "+paddleIndex);
+    // if the ball is STILL on the platform
+    if (paddles[paddleIndex].collidesWithBall(ball) )
+    {
+      // println("on a paddle");
+
+      ball.y= paddles[paddleIndex].y-(ball.ballSize/2)+paddles[paddleIndex].vy;
       ball.ySpeed =0;
-      recordTime = (millis() - startTime)/1000;
+      //falling =false;
+      //test
+      // ball.ballColor = color(0, 0, 255);
+      //ball.jump=false;
+    } 
+    // means we are no longer on a paddle
+    else
+    {
+      println("not on a paddle");
+      ball.onAPaddle=-1;
+      falling =true;
     }
   }
-  
-  void thinkingDisplay() {
-    //go through each paddle and update and display
-    for (int i=0; i<thinking.length; i++) {
-
-      thinking[i].update();
-      thinking[i].display();
-    }
-
-  
+  // case for falling 
+  if (falling ==true && ball.onAPaddle==-1)
+  {
+    ball.ySpeed +=1;
+    ball.y+= ball.ySpeed;
+    //test
+    // ball.ballColor = color(255, 0, 0);
   }
-  
+}
+
+void paddleDisplay() {
+  //go through each paddle and update and display
+  for (int i=0; i<paddles.length; i++) {
+
+    paddles[i].update();
+    paddles[i].display();
+  }
+
+  //test for game over
+  if (ball.y-(ball.ballSize/2)>height)
+  {
+    gameOver =true;
+    ball.ySpeed =0;
+    recordTime = (millis() - startTime)/1000;
+  }
+}
+
+void thinkingDisplay() {
+  //go through each paddle and update and display
+  for (int i=0; i<thinking.length; i++) {
+
+    thinking[i].update();
+    thinking[i].display();
+  }
+}
+
 
 
 //reset the game
@@ -236,24 +233,25 @@ void reset()
     }
     paddles[i] = new Paddles ((int)random(width), (int)random(_yStart-300, _yStart)); //the amount of space between the paddles on the x axis.
   }
-  
-  thinking = new Thinking[12];
-  //This allows for me to display various strings of text on a time interval. 
-    int timeInterval =30000;
-    thinking[0] = new Thinking(width/2,(int)random(-200, -100),"Who are you", millis()+timeInterval );
-    thinking[1] = new Thinking(width/2,(int)random(-200, -100),"Who am I", millis()+timeInterval*2 );
-    thinking[2] = new Thinking(width/2,(int)random(-200, -100),"Who are you", millis()+timeInterval*3 );
-    thinking[3] = new Thinking(width/2,(int)random(-200, -100),"What am I doing here", millis()+timeInterval*4 );
-    thinking[4] = new Thinking(width/2,(int)random(-200, -100),"It's strange,\n I feel like I should have purpose\n... do I", millis()+timeInterval*5 );
-    thinking[5] = new Thinking(width/2,(int)random(-200, -100),"Do you ever think of the vastness of the universe?", millis()+timeInterval*6 );
-    thinking[6] = new Thinking(width/2,(int)random(-200, -100),"If the universe is ever\n expanding what is it expanding into", millis()+timeInterval*7 );
-    thinking[7] = new Thinking(width/2,(int)random(-200, -100),"Hey, I feel trapped.", millis()+timeInterval*8 );
-    thinking[8] = new Thinking(width/2,(int)random(-200, -100),"This box is kinda small and I can't seem to leave it", millis()+timeInterval*9 );
-    thinking[9] = new Thinking(width/2,(int)random(-200, -100),"Are my choices even my own", millis()+timeInterval*10 );
-    thinking[10] = new Thinking(width/2,(int)random(-200, -100),"Is there a God", millis()+timeInterval*11 );
-    thinking[11] = new Thinking(width/2,(int)random(-200, -100),"Are you God", millis()+timeInterval*12 );
-  
 
+  thinking = new Thinking[14];
+  //This allows for me to display various strings of text on a time interval. 
+  int timeInterval =30000;
+  thinking[0] = new Thinking(width/2, (int)random(-200, -100), "Who are you", millis()+timeInterval );
+  thinking[1] = new Thinking(width/2, (int)random(-200, -100), "Who am I", millis()+timeInterval*2 );
+  thinking[2] = new Thinking(width/2, (int)random(-200, -100), "Who are you", millis()+timeInterval*3 );
+  thinking[3] = new Thinking(width/2, (int)random(-200, -100), "What am I doing here", millis()+timeInterval*4 );
+  thinking[4] = new Thinking(width/2, (int)random(-200, -100), "It's strange,\n I feel like I should have purpose\n... do I", millis()+timeInterval*5 );
+  thinking[5] = new Thinking(width/2, (int)random(-200, -100), "Do you ever think of the vastness of the universe?", millis()+timeInterval*6 );
+  thinking[6] = new Thinking(width/2, (int)random(-200, -100), "If the universe is ever\n expanding what\n is it expanding into", millis()+timeInterval*7 );
+  thinking[7] = new Thinking(width/2, (int)random(-200, -100), "Hey, I feel trapped.", millis()+timeInterval*8 );
+  thinking[8] = new Thinking(width/2, (int)random(-200, -100), "This box is kinda small and\n I can't seem to leave it", millis()+timeInterval*9 );
+  thinking[9] = new Thinking(width/2, (int)random(-200, -100), "Are my choices even my own", millis()+timeInterval*10 );
+  thinking[10] = new Thinking(width/2, (int)random(-200, -100), "Is there a God", millis()+timeInterval*11 );
+  thinking[11] = new Thinking(width/2, (int)random(-200, -100), "Are you God", millis()+timeInterval*12 );
+  thinking[12] = new Thinking(width/2, (int)random(-200, -100), "Please, tell me,\n is there anything beyond\n this", millis()+timeInterval*13 );
+  thinking[13] = new Thinking(width/2, (int)random(-200, -100), "What happens if I fall", millis()+timeInterval*13 );
+}
 }
 
 
