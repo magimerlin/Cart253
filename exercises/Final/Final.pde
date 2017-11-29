@@ -6,6 +6,7 @@ Paddles[] paddles;
 Menu menu;
 SoundFile jumpSound;
 
+
 Thinking[] thinking;
 
 color backgroundColor = color(0);
@@ -28,7 +29,7 @@ void setup() {
   reset();
   menu = new Menu(this);
   fontBold = createFont("Amatic-Bold.ttf", 32);
-  powerup = new PowerUp (random(20, width-2), -20 );
+  powerup = new PowerUp (random(20, width-2), -20, this);
   
 }
 
@@ -242,12 +243,12 @@ void reset()
     thinking[0] = new Thinking(width/2,(int)random(-200, -100),"Who are you", millis()+timeInterval );
     thinking[1] = new Thinking(width/2,(int)random(-200, -100),"Who am I", millis()+timeInterval*2 );
     thinking[2] = new Thinking(width/2,(int)random(-200, -100),"Who are you", millis()+timeInterval*3 );
-    thinking[3] = new Thinking(width/2,(int)random(-200, -100),"What am i doing here", millis()+timeInterval*4 );
+    thinking[3] = new Thinking(width/2,(int)random(-200, -100),"What am I doing here", millis()+timeInterval*4 );
     thinking[4] = new Thinking(width/2,(int)random(-200, -100),"It's strange,\n I feel like I should have purpose\n... do I", millis()+timeInterval*5 );
-    thinking[5] = new Thinking(width/2,(int)random(-200, -100),"Do you ever think of\n the vastness of the universe?", millis()+timeInterval*6 );
-    thinking[6] = new Thinking(width/2,(int)random(-200, -100),"If the universe\n is ever expanding\n what is it expanding into", millis()+timeInterval*7 );
+    thinking[5] = new Thinking(width/2,(int)random(-200, -100),"Do you ever think of the vastness of the universe?", millis()+timeInterval*6 );
+    thinking[6] = new Thinking(width/2,(int)random(-200, -100),"If the universe is ever\n expanding what is it expanding into", millis()+timeInterval*7 );
     thinking[7] = new Thinking(width/2,(int)random(-200, -100),"Hey, I feel trapped.", millis()+timeInterval*8 );
-    thinking[8] = new Thinking(width/2,(int)random(-200, -100),"This box is kinda small\n and I can't seem to leave it", millis()+timeInterval*9 );
+    thinking[8] = new Thinking(width/2,(int)random(-200, -100),"This box is kinda small and I can't seem to leave it", millis()+timeInterval*9 );
     thinking[9] = new Thinking(width/2,(int)random(-200, -100),"Are my choices even my own", millis()+timeInterval*10 );
     thinking[10] = new Thinking(width/2,(int)random(-200, -100),"Is there a God", millis()+timeInterval*11 );
     thinking[11] = new Thinking(width/2,(int)random(-200, -100),"Are you God", millis()+timeInterval*12 );

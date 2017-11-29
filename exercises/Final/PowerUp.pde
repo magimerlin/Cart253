@@ -1,6 +1,8 @@
 
 class PowerUp {
 
+  SoundFile powerUpSound;
+
   int SPEED = 2;
   float x;
   int y;
@@ -15,7 +17,9 @@ class PowerUp {
 
   color powerUpColor = color (0, 0, 255);
 
-  PowerUp(float _x, int _y) {
+  PowerUp(float _x, int _y, PApplet processing) {
+
+    powerUpSound = new SoundFile(processing, "powerup.wav");
     x = _x;
     y = _y;
     vx = SPEED;
@@ -62,18 +66,20 @@ class PowerUp {
 
     if (fromRightLeft  && fromTop)
     {
+      powerUpSound.play();
       println("collisionPowerUp");
       return true ;
     }
 
-    return false;
-  }
+  return false;
+}
 
-  void display() {
 
-    noStroke();
-    rectMode(CORNER);
-    fill (255, 0, 0);
-    rect(x, y, powerUpSize, powerUpSize);
-  }
+void display() {
+
+  noStroke();
+  rectMode(CORNER);
+  fill (255, 0, 0);
+  rect(x, y, powerUpSize, powerUpSize);
+}
 }
