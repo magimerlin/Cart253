@@ -239,20 +239,20 @@ void reset()
   int timeInterval =30000;
   thinking[0] = new Thinking(width/2, (int)random(-200, -100), "Who are you", millis()+timeInterval );
   thinking[1] = new Thinking(width/2, (int)random(-200, -100), "Who am I", millis()+timeInterval*2 );
-  thinking[2] = new Thinking(width/2, (int)random(-200, -100), "Who are you", millis()+timeInterval*3 );
+  thinking[2] = new Thinking(width/2, (int)random(-400, -300), "I'm a ball...\n if I'm a ball\n what are you", millis()+timeInterval*3 );
   thinking[3] = new Thinking(width/2, (int)random(-200, -100), "What am I doing here", millis()+timeInterval*4 );
-  thinking[4] = new Thinking(width/2, (int)random(-200, -100), "It's strange,\n I feel like I should have purpose\n... do I", millis()+timeInterval*5 );
-  thinking[5] = new Thinking(width/2, (int)random(-200, -100), "Do you ever think of the vastness of the universe?", millis()+timeInterval*6 );
-  thinking[6] = new Thinking(width/2, (int)random(-200, -100), "If the universe is ever\n expanding what\n is it expanding into", millis()+timeInterval*7 );
+  thinking[4] = new Thinking(width/2, (int)random(-500, -400), "It's strange,\n I feel like I should have purpose\n... do I", millis()+timeInterval*5 );
+  thinking[5] = new Thinking(width/2, (int)random(-300, -200), "Do you ever think of the\n vastness of the universe?", millis()+timeInterval*6 );
+  thinking[6] = new Thinking(width/2, (int)random(-500, -400), "If the universe is ever\n expanding what\n is it expanding into", millis()+timeInterval*7 );
   thinking[7] = new Thinking(width/2, (int)random(-200, -100), "Hey, I feel trapped.", millis()+timeInterval*8 );
-  thinking[8] = new Thinking(width/2, (int)random(-200, -100), "This box is kinda small and\n I can't seem to leave it", millis()+timeInterval*9 );
+  thinking[8] = new Thinking(width/2, (int)random(-400, -300), "This box is kinda small and\n I can't seem to leave it", millis()+timeInterval*9 );
   thinking[9] = new Thinking(width/2, (int)random(-200, -100), "Are my choices even my own", millis()+timeInterval*10 );
   thinking[10] = new Thinking(width/2, (int)random(-200, -100), "Is there a God", millis()+timeInterval*11 );
   thinking[11] = new Thinking(width/2, (int)random(-200, -100), "Are you God", millis()+timeInterval*12 );
-  thinking[12] = new Thinking(width/2, (int)random(-200, -100), "Please, tell me,\n is there anything beyond\n this", millis()+timeInterval*13 );
-  thinking[13] = new Thinking(width/2, (int)random(-200, -100), "What happens if I fall", millis()+timeInterval*13 );
+  thinking[12] = new Thinking(width/2, (int)random(-500, -400), "Please, tell me,\n is there anything beyond\n this", millis()+timeInterval*13 );
+  thinking[13] = new Thinking(width/2, (int)random(-200, -100), "What happens if I fall", millis()+timeInterval*14 );
 }
-}
+
 
 
 void keyPressed() {

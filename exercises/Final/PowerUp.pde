@@ -29,6 +29,7 @@ class PowerUp {
 
   void update() { 
 
+    //this is the timer that allows for the power up to float down randomly across the screen every 30 seconds 
     if (startPowerUp == false) {
 
       timePassed = millis() - startTimer;
@@ -59,7 +60,9 @@ class PowerUp {
       }
     }
   }
-
+  
+ //this code was borrowed from the paddle class. It detects when the ball collides with the power up activating the reduction of speed the 
+ //paddles are moving at as well as a quarky sound I added to make sure the player knows when he or she has collided with the power up.
   boolean collidesWithBall (Ball ball) {
     boolean fromRightLeft = ball.x +(ball.ballSize/2)  >= x && (ball.x-(ball.ballSize/2))<= (x + powerUpSize);
     boolean fromTop = ball.y+(ball.ballSize/2)>= y && ball.y+(ball.ballSize/2)<(y+powerUpSize);
