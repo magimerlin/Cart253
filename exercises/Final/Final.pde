@@ -78,11 +78,13 @@ void handleGame() {
 
   powerup.update();
   powerup.display();
+  
+  //this goes into the power up class and the paddle class and slows the paddles speed down by .4 when the ball and power up collide.
   if (powerup.collidesWithBall(ball) ==true)
   {
     for (int i=0; i<paddles.length; i++) {
 
-      paddles[i].vy = paddles[i].vy - .01;
+      paddles[i].vy = paddles[i].vy - .04;
     }
   }
 
