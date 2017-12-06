@@ -1,4 +1,16 @@
 
+//IT'S EASY UNTIL IT'S HARD
+
+//This game is a metophore for life. Reaching the top does not always mean things will get easier for you.
+//most of the time things get tougher in different ways, and in the end we are still all stuck asking ourselves the same damn 
+//questions. Who am I? Who are you? Why are we here?
+//This games ellipse is asking you the same questions, I guess we can say that the little guy is trying to make you think a little. 
+
+//DISCLAIMER: This game takes no responsibility for any exsistential crisis that may occure once the game has ended. This game will however,
+//take full credit if any player discovers the answer to the age old question: "What is the meaning of life".
+
+
+
 import processing.sound.*;
 
 Ball ball;
@@ -36,9 +48,7 @@ void setup() {
 void draw() {
 
   background(0);
-
-
-
+  
   //RESTART TIMER EVERYTIME PERSON DIES 
   // if game not over
   if (gameOver ==false)
@@ -59,9 +69,9 @@ void draw() {
   {
     background(0);
     fill(255);
-    textSize(55);
+    textSize(50);
     textAlign(CENTER);
-    text("YOU LIVED FOR " + recordTime + " SECONDS...", width/2, height/2);
+    text("YOU'VE LIVED FOR " + recordTime + " SECONDS...", width/2, height/2);
     //println("gameOver");
   }
 }
@@ -132,7 +142,7 @@ void handleBall() {
     {
 
       // if there is collision 
-      if (paddles[i].collidesWithBall(ball))
+      if (paddles[i].collidesWithBall(ball)&& paddles[i].paddleId==1)
       {
         println("collide while on paddle");
         // on a platform - which one  == i
@@ -156,7 +166,7 @@ void handleBall() {
     int paddleIndex= ball.onAPaddle;
     // println("paddle index:: "+paddleIndex);
     // if the ball is STILL on the platform
-    if (paddles[paddleIndex].collidesWithBall(ball) )
+    if (paddles[paddleIndex].collidesWithBall(ball) && paddles[paddleIndex].paddleId==1 )
     {
       // println("on a paddle");
 
@@ -191,6 +201,7 @@ void paddleDisplay() {
 
     paddles[i].update();
     paddles[i].display();
+   
   }
 
   //test for game over
@@ -233,8 +244,15 @@ void reset()
     if (i%5 == 0 && i!=0) {
       _yStart = _yStart - 100; //this is the amount of space seperating the paddles from each other on the y axis.
     }
-    paddles[i] = new Paddles ((int)random(width), (int)random(_yStart-300, _yStart)); //the amount of space between the paddles on the x axis.
-  }
+    if(i%6 ==0)
+    {
+    paddles[i] = new Paddles ((int)random(width), (int)random(_yStart-300, _yStart),2); //the amount of space between the paddles on the x axis.
+    }
+    else
+    {
+   paddles[i] = new Paddles ((int)random(width), (int)random(_yStart-300, _yStart),1); //the amount of space between the paddles on the x axis
+    }
+}
 
   thinking = new Thinking[14];
   //This allows for me to display various strings of text on a time interval. 

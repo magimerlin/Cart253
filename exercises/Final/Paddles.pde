@@ -10,16 +10,22 @@ class Paddles {
 
   int paddleHeight = 10;
   int paddleLength = 50;
+  int paddleId;
 
   color fill = (255);
 
   color paddlesColor = color(255);
 
 
-  Paddles( int X, float Y) {
+  Paddles( int X, float Y,int pId) {
 
     x = X;
     y = Y;
+    paddleId = pId;
+    if(paddleId ==2)
+    {
+      paddlesColor = color(255,50);
+    }
   }
 
   void update() {
