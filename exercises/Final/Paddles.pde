@@ -24,7 +24,7 @@ class Paddles {
     paddleId = pId;
     if(paddleId ==2)
     {
-      paddlesColor = color(255,50);
+      paddlesColor = color(255,90);
     }
   }
 

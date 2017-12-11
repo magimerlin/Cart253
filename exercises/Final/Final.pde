@@ -5,6 +5,12 @@
 //most of the time things get tougher in different ways, and in the end we are still all stuck asking ourselves the same damn 
 //questions. Who am I? Who are you? Why are we here?
 //This games ellipse is asking you the same questions, I guess we can say that the little guy is trying to make you think a little. 
+//This game is mean to have a fairly simply game play to allow of the games user time to think about what they are experiencing as well as 
+//having a fun time trying to out live the timer which in the end is impossible. Time always outlasts us all. 
+//
+//
+//To actuallu create the game play I used many of the techniques used in class. Arrays, drawing basic shapes with code, using text in game etc. and with the help 
+//Sabine (special thanks!) I was able to achieve my vision for my game. 
 
 //DISCLAIMER: This game takes no responsibility for any exsistential crisis that may occure once the game has ended. This game will however,
 //take full credit if any player discovers the answer to the age old question: "What is the meaning of life".
@@ -109,6 +115,7 @@ void handleGame() {
     }
   }
 
+//an attempt at organzing my code a bit.
   handleBall();
   paddleDisplay();
   thinkingDisplay();
@@ -168,14 +175,10 @@ void handleBall() {
     // if the ball is STILL on the platform
     if (paddles[paddleIndex].collidesWithBall(ball) && paddles[paddleIndex].paddleId==1 )
     {
-      // println("on a paddle");
 
       ball.y= paddles[paddleIndex].y-(ball.ballSize/2)+paddles[paddleIndex].vy;
       ball.ySpeed =0;
-      //falling =false;
-      //test
-      // ball.ballColor = color(0, 0, 255);
-      //ball.jump=false;
+      
     } 
     // means we are no longer on a paddle
     else
@@ -190,8 +193,7 @@ void handleBall() {
   {
     ball.ySpeed +=1;
     ball.y+= ball.ySpeed;
-    //test
-    // ball.ballColor = color(255, 0, 0);
+
   }
 }
 
