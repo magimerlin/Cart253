@@ -34,7 +34,7 @@ int startTime;
 int recordTime;
 
 boolean falling = false;
-float floorY = 600; //WHAT IS THIS??
+float floorY = 600;
 boolean gameOver = false;
 boolean showMenu =true;
 PFont fontBold;
@@ -216,6 +216,7 @@ void paddleDisplay() {
 }
 
 void thinkingDisplay() {
+  
   //go through each paddle and update and display
   for (int i=0; i<thinking.length; i++) {
 
@@ -236,7 +237,7 @@ void reset()
 
   paddles = new Paddles [1000];
 
-  //float _yTemp = -20;
+  
   float _yStart = -3;
 
 

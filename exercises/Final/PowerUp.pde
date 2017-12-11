@@ -61,7 +61,7 @@ class PowerUp {
     }
   }
   
- //this code was borrowed from the paddle class. It detects when the ball collides with the power up activating the reduction of speed the 
+ //This code was borrowed from the paddle class. It detects when the ball collides with the power up activating the reduction of speed the 
  //paddles are moving at as well as a quarky sound I added to make sure the player knows when he or she has collided with the power up.
   boolean collidesWithBall (Ball ball) {
     boolean fromRightLeft = ball.x +(ball.ballSize/2)  >= x && (ball.x-(ball.ballSize/2))<= (x + powerUpSize);

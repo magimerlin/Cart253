@@ -30,8 +30,6 @@ class Menu {
 
   void display() {
 
-
-    //image (titleImage, width/2, 100);
     textFont(font);
     text("It's Easy Until It's Hard", width/2, 100);
     textAlign(CENTER);
@@ -40,7 +38,6 @@ class Menu {
     pushMatrix();
     ds.render();
     popMatrix();
-    //textSize(30);
 
     //this displays both the red rectangle and the "play" text. 
     fill(255, 0, 0);

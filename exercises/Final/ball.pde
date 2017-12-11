@@ -20,7 +20,7 @@ class Ball {
 
   boolean jump = false;
 
-  //the keys function enables me to press two keys at the same time. if i want to jump and also 
+  //the keys function enables me to press two keys at the same time. If I want to jump and also 
   //move left or right i will be able to do that. 
   boolean[] keys = {false, false};
 
@@ -33,9 +33,6 @@ class Ball {
     y = _y;
   }
 
-  //void collide (Paddles paddles, Paddle otherPaddles) {
-  //}
-
   void display() {
 
     noStroke();
@@ -46,6 +43,7 @@ class Ball {
 
   void jump() {
 
+    //where the sound gets activated, whenever the player presses the space bar the sound hgets played.
     if ( jump == false && falling == false) {
       jump = true;
       ySpeed = -17;
@@ -55,7 +53,8 @@ class Ball {
 
   }
 
-
+//the following is what controls or assigns the balls movement on certain commands, in this case the commands are whether the player is pressing
+//the left and right arrow keys or the space bar. 
   void update() {
 
     if (keys[0] ==true)

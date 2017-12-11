@@ -30,7 +30,7 @@ class Paddles {
 
   void update() {
 
-    //the only direction the paddles are able to move is along the y axis... for now?
+    //the only direction the paddles are able to move is along the y axis
     y += vy;
   }
 
@@ -42,8 +42,7 @@ class Paddles {
     rect(x, y, paddleLength, paddleHeight);
   }
 
-//these booleans 
-//
+//these booleans organize the positioning of the paddles as well as their interactions with the ball object.
   boolean collidesWithBall (Ball ball) {
     boolean fromRightLeft = ball.x +(ball.ballSize/2)  >= x && (ball.x-(ball.ballSize/2))<= (x + paddleLength);
       boolean fromTop = ball.y+(ball.ballSize/2)>= y && ball.y+(ball.ballSize/2)<(y+5)+ball.ySpeed;

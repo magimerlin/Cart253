@@ -1,7 +1,9 @@
 
 class Thinking {
 
-   //this class acts a lot like the paddles but is also using an
+//this class originally acted like a paddle but has been changed to fade on top of the ball object every 30 seconds the game is running. 
+//it moves with the ball until the 30 seconds is up. After the next "thought" fades in and thisd goes on until the the program runs 
+//out of thoughts.
   
   
   float x;
@@ -34,10 +36,11 @@ class Thinking {
 
   void update() {
 
-    //the only direction the paddles are able to move is along the y axis... for now?
+    //this is what allows for the text to fade in on top of the ellipse and move where ever the it moves until its TIME. IS. UP.
+    
     if ( millis() > timeInterval &&startedMoving==0) {
       startedMoving =1;
-     // y += vy;
+     
     }
     if(startedMoving ==1)
     {
@@ -65,7 +68,7 @@ class Thinking {
     rectMode(CORNER);
     if(alpha <255 && startedMoving ==1)
     {
-      alpha +=0.40;
+      alpha +=0.40; //ALPHA is what allows for the text to fade in. the number is the speed at which the text fades in at.
     }
      if(alpha >=0 && startedMoving ==2)
     {
